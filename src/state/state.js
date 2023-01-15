@@ -3,10 +3,10 @@ export const createInitialState = (parameters = {
   loop: false,
 }) => ({
   isPlayed: false,
-  isMuted: parameters.muted,
+  isMuted: parameters.muted ?? false,
   volume: 50,
   currentTime: 0,
   duration: 0,
   playbackRate: 1,
-  isLooped: parameters.loop,
+  isLooped: parameters.loop ?? false,
 });
