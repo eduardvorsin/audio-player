@@ -57,6 +57,6 @@ describe('Volume Controls component tests', () => {
       <VolumeControls isMuted />
     );
 
-    expect(screen.getByRole('button').textContent).toMatch(/unmute/i);
+    expect(screen.getByRole('button')).toHaveTextContent(/unmute/i);
   });
 });

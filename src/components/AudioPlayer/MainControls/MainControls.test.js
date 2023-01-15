@@ -75,6 +75,6 @@ describe('Volume Controls component tests', () => {
       <MainControls isPlayed />
     );
 
-    expect(screen.getByRole('button').textContent).toMatch(/pause/i);
+    expect(screen.getByRole('button')).toHaveTextContent(/pause/i);
   });
 });
