@@ -6,6 +6,7 @@ export const RangeSlider = forwardRef(({
   className,
   onChange,
   isVertical,
+  testId,
   ...props
 }, ref) => {
 
@@ -24,6 +25,7 @@ export const RangeSlider = forwardRef(({
     <StyledRangeSlider
       className={className}
       isVertical={isVertical}
+      data-testid={testId}
     >
       <input
         style={{ '--progress-percent': `${currentPercent}%` }}
@@ -40,10 +42,12 @@ RangeSlider.propTypes = {
   className: PropTypes.string,
   onChange: PropTypes.func,
   isVertical: PropTypes.bool,
+  testId: PropTypes.string,
 };
 
 RangeSlider.defaultProps = {
   className: '',
   onChange: () => { },
   isVertical: false,
+  testId: ''
 };
