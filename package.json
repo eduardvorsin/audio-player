@@ -24,6 +24,11 @@
       "react-app/jest"
     ]
   },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.svg": "<rootDir>/__mocks__/svg.js"
+    }
+  },
   "browserslist": {
     "production": [
       ">0.2%",
