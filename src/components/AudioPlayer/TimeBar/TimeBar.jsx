@@ -11,7 +11,7 @@ export const TimeBar = ({
   return (
     <StyledTimeBar
       className={className}
-      title='time'
+      data-testid='time-bar'
       {...props}
     >
       {currentTime}/{duration}

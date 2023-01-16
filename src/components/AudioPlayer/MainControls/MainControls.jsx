@@ -24,7 +24,10 @@ export const MainControls = React.memo(({
 	}
 
 	return (
-		<StyledMainControls nextAndPrevious={showNextAndPreviousControls}>
+		<StyledMainControls
+			nextAndPrevious={showNextAndPreviousControls}
+			data-testid='main-controls'
+		>
 			{showNextAndPreviousControls &&
 				<Button
 					primary

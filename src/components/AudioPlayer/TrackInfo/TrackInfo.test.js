@@ -23,7 +23,6 @@ describe('Track Info component tests', () => {
     render(
       <TrackInfo
         className='test'
-        testId='track-info'
       />
     );
 

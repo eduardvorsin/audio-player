@@ -31,7 +31,6 @@ describe('Range slider component tests', () => {
   test('className is assigned correctly', () => {
     render(
       <RangeSlider
-        testId='range-slider'
         className='test'
       />
     );

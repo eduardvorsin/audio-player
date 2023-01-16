@@ -21,7 +21,9 @@ export const AdditionalControls = React.memo(({
   const repeatButtonIcon = isLooped ? <RepeatIcon /> : <NoRepeatIcon />;
 
   return (
-    <StyledAdditionalControls>
+    <StyledAdditionalControls
+      data-testid='additional-controls'
+    >
       {showDownloadControl &&
         <Button
           withoutVisibleText

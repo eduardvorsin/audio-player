@@ -26,6 +26,7 @@ export const Button = ({
 			className={className}
 			onClick={clickHandler}
 			onKeyDown={keyDownHandler}
+			data-testid='button'
 			{...props}
 		>
 			{startIcon}

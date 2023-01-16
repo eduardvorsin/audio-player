@@ -209,6 +209,7 @@ export const AudioPlayer = ({
       tabIndex={0}
       onKeyDown={onKeyDown}
       title='audio-player'
+      data-testid='audio-player'
     >
       <audio
         ref={audioRef}

@@ -16,7 +16,9 @@ export const VolumeControls = React.memo(({
 	const currentIcon = isMuted ? <MuteIcon /> : <VolumeIcon />;
 
 	return (
-		<StyledVolumeControls>
+		<StyledVolumeControls
+			data-testid='volume-controls'
+		>
 			<Button
 				withoutVisibleText
 				startIcon={currentIcon}

@@ -32,7 +32,9 @@ export const AudioControls = React.memo(({
 		showDownloadControl || showPlaybackRateControl || showLoopControl;
 
 	return (
-		<StyledAudioControls>
+		<StyledAudioControls
+			data-testid='audio-controls'
+		>
 			<MainControls
 				isPlayed={isPlayed}
 				togglePlaying={togglePlaying}
