@@ -1,14 +1,23 @@
-import { CHANGE_CURRENT_TIME, CHANGE_DURATION, CHANGE_PLAYBACKRATE, CHANGE_VOLUME, LOOP, MUTE, PAUSE, PLAY, UNLOOP, UNMUTE } from "../actions/actions_types";
+import {
+  changeCurrentTimeAC,
+  changeDurationAC,
+  changePlaybackRateAC,
+  changeVolumeAC,
+  loopAudioAC,
+  muteAudioAC,
+  pauseAudioAC,
+  playAudioAC,
+  unloopAudioAC,
+  unmuteAudioAC
+} from "../actions/actionCreators";
 
 import { createInitialState } from "../state";
 import { reducer } from "./reducer";
 
 describe('reducer tests', () => {
   test('the reducer is launched with a CHANGE_DURATION action', () => {
-    const action = {
-      type: CHANGE_DURATION,
-      duration: 137,
-    };
+    const action = changeDurationAC(137);
+
     const intialState = createInitialState();
     const expectedState = { ...intialState, duration: 137 };
 
@@ -16,10 +25,7 @@ describe('reducer tests', () => {
   });
 
   test('the reducer is launched with a CHANGE_CURRENT_TIME action', () => {
-    const action = {
-      type: CHANGE_CURRENT_TIME,
-      currentTime: 42,
-    };
+    const action = changeCurrentTimeAC(42);
     const intialState = createInitialState();
     const expectedState = { ...intialState, currentTime: 42 };
 
@@ -27,10 +33,7 @@ describe('reducer tests', () => {
   });
 
   test('the reducer is launched with a CHANGE_VOLUME action', () => {
-    const action = {
-      type: CHANGE_VOLUME,
-      volume: 1,
-    };
+    const action = changeVolumeAC(1);
     const intialState = createInitialState();
     const expectedState = { ...intialState, volume: 1 };
 
@@ -38,10 +41,7 @@ describe('reducer tests', () => {
   });
 
   test('the reducer is launched with a CHANGE_PLAYBACKRATE action', () => {
-    const action = {
-      type: CHANGE_PLAYBACKRATE,
-      playbackRate: 1.5,
-    };
+    const action = changePlaybackRateAC(1.5);
     const intialState = createInitialState();
     const expectedState = { ...intialState, playbackRate: 1.5 };
 
@@ -49,10 +49,7 @@ describe('reducer tests', () => {
   });
 
   test('the reducer is launched with a PLAY action', () => {
-    const action = {
-      type: PLAY,
-      isPlayed: false,
-    };
+    const action = playAudioAC();
     const intialState = createInitialState();
     const expectedState = { ...intialState, isPlayed: true };
 
@@ -60,10 +57,7 @@ describe('reducer tests', () => {
   });
 
   test('the reducer is launched with a PAUSE action', () => {
-    const action = {
-      type: PAUSE,
-      isPlayed: true,
-    };
+    const action = pauseAudioAC();
     const intialState = createInitialState();
     const expectedState = { ...intialState, isPlayed: false };
 
@@ -71,10 +65,7 @@ describe('reducer tests', () => {
   });
 
   test('the reducer is launched with a MUTE action', () => {
-    const action = {
-      type: MUTE,
-      isMuted: false,
-    };
+    const action = muteAudioAC();
     const intialState = createInitialState();
     const expectedState = { ...intialState, isMuted: true };
 
@@ -82,10 +73,7 @@ describe('reducer tests', () => {
   });
 
   test('the reducer is launched with a UNMUTE action', () => {
-    const action = {
-      type: UNMUTE,
-      isMuted: true,
-    };
+    const action = unmuteAudioAC();
     const intialState = createInitialState();
     const expectedState = { ...intialState, isMuted: false };
 
@@ -93,10 +81,7 @@ describe('reducer tests', () => {
   });
 
   test('the reducer is launched with a LOOP action', () => {
-    const action = {
-      type: LOOP,
-      isLooped: false,
-    };
+    const action = loopAudioAC();
     const intialState = createInitialState();
     const expectedState = { ...intialState, isLooped: true };
 
@@ -104,10 +89,7 @@ describe('reducer tests', () => {
   });
 
   test('the reducer is launched with a UNLOOP action', () => {
-    const action = {
-      type: UNLOOP,
-      isLooped: true,
-    };
+    const action = unloopAudioAC();
     const intialState = createInitialState();
     const expectedState = { ...intialState, isLooped: false };
 
@@ -116,8 +98,8 @@ describe('reducer tests', () => {
 
   test('the reducer is launched with unknown action', () => {
     const action = {
-      type: UNLOOP,
-      isLooped: true,
+      type: 'abc',
+      value: true,
     };
     const intialState = createInitialState();
 

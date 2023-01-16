@@ -1,29 +1,40 @@
-import { CHANGE_CURRENT_TIME, CHANGE_DURATION, CHANGE_PLAYBACKRATE, CHANGE_VOLUME, MUTE, UNMUTE, PAUSE, PLAY, LOOP, UNLOOP } from "../actions/actions_types"
+import {
+	CHANGE_CURRENT_TIME,
+	CHANGE_DURATION,
+	CHANGE_PLAYBACKRATE,
+	CHANGE_VOLUME,
+	MUTE,
+	UNMUTE,
+	PAUSE,
+	PLAY,
+	LOOP,
+	UNLOOP
+} from "../actions/actionCreators";
 
 export function reducer(state, action) {
 	switch (action.type) {
 		case CHANGE_DURATION: {
 			return {
 				...state,
-				duration: action.duration,
+				duration: action.payload,
 			}
 		}
 		case CHANGE_CURRENT_TIME: {
 			return {
 				...state,
-				currentTime: action.currentTime,
+				currentTime: action.payload,
 			}
 		}
 		case CHANGE_VOLUME: {
 			return {
 				...state,
-				volume: action.volume,
+				volume: action.payload,
 			}
 		}
 		case CHANGE_PLAYBACKRATE: {
 			return {
 				...state,
-				playbackRate: action.playbackRate,
+				playbackRate: action.payload,
 			}
 		}
 		case PLAY: {

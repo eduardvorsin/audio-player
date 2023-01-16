@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useReducer, useRef } from "react";
 import PropTypes from 'prop-types';
 import { createInitialState } from "../../state/state";
-import { CHANGE_CURRENT_TIME, CHANGE_DURATION, CHANGE_PLAYBACKRATE, CHANGE_VOLUME, LOOP, MUTE, PAUSE, PLAY, UNLOOP, UNMUTE } from "../../state/actions/actions_types";
 import { reducer } from "../../state/reducers/reducer";
 import { AudioControls } from './AudioControls/AudioControls';
 import { StyledAudioPlayer } from "./StyledAudioPlayer";
@@ -9,6 +8,18 @@ import { ProgressRangeSlider } from "./ProgressRangeSlider/ProgressRangeSlider";
 import { TimeBar } from "./TimeBar/TimeBar";
 import { formatTime } from "../../helpers/helpers";
 import { TrackInfo } from "./TrackInfo/TrackInfo";
+import {
+  changeCurrentTimeAC,
+  changeDurationAC,
+  changePlaybackRateAC,
+  changeVolumeAC,
+  loopAudioAC,
+  muteAudioAC,
+  pauseAudioAC,
+  playAudioAC,
+  unloopAudioAC,
+  unmuteAudioAC
+} from "../../state/actions/actionCreators";
 
 const audioFormatsRegexp = /\.(ogg|mp3|wav|aac|webm|flac)$/;
 
@@ -41,18 +52,15 @@ export const AudioPlayer = ({
     const onLoadedmetadata = () => {
       const duration = Math.floor(audio.duration);
       progressBar.current.max = duration;
-      dispatch({
-        type: CHANGE_DURATION,
-        duration,
-      });
+      dispatch(changeDurationAC(duration));
     };
 
     const canPlayThrough = () => {
       const playPromise = audioRef.current.play();
       playPromise.then(_ => {
-        dispatch({ type: PLAY });
+        dispatch(playAudioAC());
       }).catch(() => {
-        dispatch({ type: PAUSE });
+        dispatch(pauseAudioAC());
       });
     }
 
@@ -66,7 +74,7 @@ export const AudioPlayer = ({
 
   useEffect(() => {
     const isZeroVolume = state.volume < 1;
-    const nextAction = isZeroVolume ? { type: MUTE } : { type: UNMUTE }
+    const nextAction = isZeroVolume ? muteAudioAC() : unmuteAudioAC();
     dispatch(nextAction);
 
     audioRef.current.volume = state.volume / 100;
@@ -74,42 +82,36 @@ export const AudioPlayer = ({
 
   useEffect(() => {
     audioRef.current.playbackRate = 1;
-    dispatch({
-      type: CHANGE_PLAYBACKRATE,
-      playbackRate: audioRef.current.playbackRate,
-    });
-  }, [src])
+    dispatch(changePlaybackRateAC(audioRef.current.playbackRate));
+  }, [src]);
 
   const togglePlaying = useCallback(() => {
     if (state.isPlayed) {
       audioRef.current.pause();
-      dispatch({ type: PAUSE });
+      dispatch(pauseAudioAC());
     } else {
       const playPromise = audioRef.current.play();
       playPromise.then(_ => {
-        dispatch({ type: PLAY });
+        dispatch(playAudioAC());
       }).catch(() => {
-        dispatch({ type: PAUSE });
+        dispatch(pauseAudioAC());
       });
     }
   }, [state.isPlayed]);
 
   const toggleMuting = useCallback(() => {
-    const nextAction = state.isMuted ? { type: UNMUTE } : { type: MUTE };
+    const nextAction = state.isMuted ? unmuteAudioAC() : muteAudioAC();
     dispatch(nextAction);
 
     audioRef.current.muted = state.isMuted;
   }, [state.isMuted]);
 
   const onVolumeChange = useCallback((e) => {
-    dispatch({
-      type: CHANGE_VOLUME,
-      volume: +e.target.value,
-    })
+    dispatch(changeVolumeAC(+e.target.value))
   }, []);
 
   const changeLooping = useCallback(() => {
-    const nextAction = state.isLooped ? { type: UNLOOP } : { type: LOOP };
+    const nextAction = state.isLooped ? unloopAudioAC() : loopAudioAC();
     dispatch(nextAction);
 
     audioRef.current.loop = state.isLooped;
@@ -120,20 +122,14 @@ export const AudioPlayer = ({
     const nextPlaybackRateValue = playbackRate === 2 ? 0.25 : playbackRate + 0.25;
     audioRef.current.playbackRate = nextPlaybackRateValue;
 
-    dispatch({
-      type: CHANGE_PLAYBACKRATE,
-      playbackRate: audioRef.current.playbackRate,
-    });
+    dispatch(changePlaybackRateAC(audioRef.current.playbackRate));
   }, []);
 
   const onPlaying = () => {
     const currentTime = Math.floor(audioRef.current.currentTime);
     progressBar.current.value = currentTime;
 
-    dispatch({
-      type: CHANGE_CURRENT_TIME,
-      currentTime: +progressBar.current.value,
-    });
+    dispatch(changeCurrentTimeAC(+progressBar.current.value));
 
     const calculatedPercent =
       progressBar.current.value * 100 / progressBar.current.max;
@@ -144,34 +140,28 @@ export const AudioPlayer = ({
   const onEnded = () => {
     if (!state.isLooped) {
       onClickNext();
-      dispatch({ type: PAUSE });
-      dispatch({ type: CHANGE_PLAYBACKRATE, playbackRate: 1 });
+      dispatch(pauseAudioAC());
+      dispatch(changePlaybackRateAC(1));
     }
   }
 
   const onProgressChange = () => {
     audioRef.current.currentTime = +progressBar.current.value;
-    dispatch({
-      type: CHANGE_CURRENT_TIME,
-      currentTime: +progressBar.current.value,
-    });
+    dispatch(changeCurrentTimeAC(+progressBar.current.value));
   }
 
   const setProgress = (value) => {
-    dispatch({
-      type: CHANGE_CURRENT_TIME,
-      currentTime: value,
-    });
+    dispatch(changeCurrentTimeAC(value));
     progressBar.current.value = value;
     audioRef.current.currentTime = value;
   };
 
   const incrementVolume = () => {
-    dispatch({ type: CHANGE_VOLUME, volume: state.volume + 1 });
+    dispatch(changeVolumeAC(state.volume + 1));
   };
 
   const decrementVolume = () => {
-    dispatch({ type: CHANGE_VOLUME, volume: state.volume - 1 });
+    dispatch(changeVolumeAC(state.volume - 1));
   };
 
   const onKeyDown = (e) => {
