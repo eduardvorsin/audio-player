@@ -1,6 +1,6 @@
 import { CHANGE_CURRENT_TIME, CHANGE_DURATION, CHANGE_PLAYBACKRATE, CHANGE_VOLUME, LOOP, MUTE, PAUSE, PLAY, UNLOOP, UNMUTE } from "../actions/actions_types";
 
-import { createInitialState } from "../state/state";
+import { createInitialState } from "../state";
 import { reducer } from "./reducer";
 
 describe('reducer tests', () => {

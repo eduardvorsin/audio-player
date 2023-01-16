@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useReducer, useRef } from "react";
 import PropTypes from 'prop-types';
 import { createInitialState } from "../../state/state";
-import { CHANGE_CURRENT_TIME, CHANGE_DURATION, CHANGE_PLAYBACKRATE, CHANGE_VOLUME, LOOP, MUTE, PAUSE, PLAY, UNLOOP, UNMUTE } from "../../actions/actions_types";
-import { reducer } from "../../reducers/reducer";
+import { CHANGE_CURRENT_TIME, CHANGE_DURATION, CHANGE_PLAYBACKRATE, CHANGE_VOLUME, LOOP, MUTE, PAUSE, PLAY, UNLOOP, UNMUTE } from "../../state/actions/actions_types";
+import { reducer } from "../../state/reducers/reducer";
 import { AudioControls } from './AudioControls/AudioControls';
 import { StyledAudioPlayer } from "./StyledAudioPlayer";
 import { ProgressRangeSlider } from "./ProgressRangeSlider/ProgressRangeSlider";
