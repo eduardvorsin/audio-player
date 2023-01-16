@@ -3,6 +3,7 @@ import { createGlobalStyle } from "styled-components";
 import { AudioPlayer } from "./components/AudioPlayer/AudioPlayer";
 import { Image } from "./components/UI/Image/Image";
 import { StyledApp } from "./StyledApp";
+import PropTypes from 'prop-types';
 
 const GlobalStyles = createGlobalStyle`
 @font-face {
@@ -130,17 +131,17 @@ const App = () => {
       <GlobalStyles />
       <StyledApp>
         <Image
-          src={tracks[trackIndex].trackImage.src}
+          src={tracks[trackIndex]?.trackImage?.src}
           width={330}
           height={330}
-          alt={tracks[trackIndex].trackImage.alt}
+          alt={tracks[trackIndex]?.trackImage?.alt}
         />
         <AudioPlayer
           preload='metadata'
-          src={tracks[trackIndex].src}
-          trackName={tracks[trackIndex].trackName}
-          trackArtist={tracks[trackIndex].trackArtist}
-          sources={tracks[trackIndex].sources}
+          src={tracks[trackIndex]?.src}
+          trackName={tracks[trackIndex]?.trackName}
+          trackArtist={tracks[trackIndex]?.trackArtist}
+          sources={tracks[trackIndex]?.sources}
           showDownloadControl
           showPlaybackRateControl
           showLoopControl
@@ -152,6 +153,34 @@ const App = () => {
     </>
   );
 };
+
+App.propTypes = {
+  tracks: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    src: PropTypes.string.isRequired,
+    trackName: PropTypes.string,
+    trackArtist: PropTypes.string,
+    trackImage: PropTypes.shape({
+      src: PropTypes.string,
+      alt: PropTypes.string,
+    }),
+    sources: PropTypes.arrayOf(PropTypes.string),
+  })),
+}
+
+App.defaultProps = {
+  tracks: [{
+    id: 1,
+    src: 'abc.mp3',
+    trackName: '',
+    trackArtist: '',
+    trackImage: {
+      src: '',
+      alt: '',
+    },
+    sources: ['abc.ogg'],
+  }],
+}
 
 export default App;
 
