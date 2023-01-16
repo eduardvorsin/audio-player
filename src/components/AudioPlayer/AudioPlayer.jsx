@@ -10,6 +10,8 @@ import { TimeBar } from "./TimeBar/TimeBar";
 import { formatTime } from "../../helpers/helpers";
 import { TrackInfo } from "./TrackInfo/TrackInfo";
 
+const audioFormatsRegexp = /\.(ogg|mp3|wav|aac|webm|flac)$/;
+
 export const AudioPlayer = ({
   src,
   trackName,
@@ -278,12 +280,11 @@ AudioPlayer.propTypes = {
   onClickPrevious: PropTypes.func,
   onClickNext: PropTypes.func,
   src: function (props, propName, componentName) {
-
     if (typeof props[propName] !== 'string') {
       throw new Error(`Invalid type of prop ${propName}, expected to get string in ${componentName} component`);
     }
 
-    if (!props[propName].match(/\.\w+$/)) {
+    if (!props[propName].match(audioFormatsRegexp)) {
       throw new Error(`Invalid value for prop ${propName}, expected in the trackname.extension format in the ${componentName} component`);
     }
   },
@@ -293,7 +294,7 @@ AudioPlayer.propTypes = {
         throw new Error(`Invalid type of prop ${propFullName}, expected to get string in ${componentName} component`);
       }
 
-      if (!prop.match(/\.\w+$/)) {
+      if (!prop.match(audioFormatsRegexp)) {
         throw new Error(`Invalid value for prop ${propFullName}, expected in the trackname.extension format in the ${componentName} component`);
       }
     });
