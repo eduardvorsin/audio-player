@@ -293,10 +293,10 @@ AudioPlayer.propTypes = {
 }
 
 AudioPlayer.defaultProps = {
-  src: '',
+  src: 'abc.mp3',
   trackName: '',
   trackArtist: '',
-  sources: [''],
+  sources: ['abc.ogg'],
   showDownloadControl: false,
   className: '',
   showPlaybackRateControl: false,
