@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Range slider component tests snapshot with default prop values 1`] = `
+<input
+  style="--progress-percent: 0%;"
+  type="range"
+/>
+`;
+
+exports[`Range slider component tests snapshot with vertical slider 1`] = `
+<input
+  style="--progress-percent: 0%;"
+  type="range"
+/>
+`;

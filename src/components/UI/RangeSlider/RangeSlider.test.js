@@ -36,4 +36,20 @@ describe('Range slider component tests', () => {
     );
     expect(screen.getByTestId('range-slider')).toHaveClass('test');
   });
+
+  test('snapshot with default prop values', () => {
+    render(
+      <RangeSlider />
+    );
+
+    expect(screen.getByRole('slider')).toMatchSnapshot();
+  });
+
+  test('snapshot with vertical slider', () => {
+    render(
+      <RangeSlider isVertical />
+    );
+
+    expect(screen.getByRole('slider')).toMatchSnapshot();
+  });
 });
