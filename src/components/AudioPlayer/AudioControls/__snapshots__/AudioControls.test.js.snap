@@ -1,0 +1,539 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AudioControls component tests snapshot with a modified volume prop 1`] = `
+<div
+  class="sc-gswNZR ipfQzw"
+  data-testid="audio-controls"
+>
+  <div
+    class="sc-dkrFOg gMtPZj"
+    data-testid="main-controls"
+  >
+    <button
+      class="sc-hLBbgP eWuHc"
+      data-testid="button"
+    >
+      <svg />
+      play
+    </button>
+  </div>
+  <div
+    class="sc-jSUZER jBXoGo"
+    data-testid="volume-controls"
+  >
+    <button
+      class="sc-hLBbgP djRQit"
+      data-testid="button"
+    >
+      <svg />
+      mute
+    </button>
+    <div
+      class="sc-gKPRtg mrZYI"
+      data-testid="range-slider"
+    >
+      <input
+        style="--progress-percent: 33%;"
+        type="range"
+        value="33"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`AudioControls component tests snapshot with all props starting with the word "show" 1`] = `
+<div
+  class="sc-gswNZR ipfQzw"
+  data-testid="audio-controls"
+>
+  <div
+    class="sc-dkrFOg ccDDgC"
+    data-testid="main-controls"
+  >
+    <button
+      class="sc-hLBbgP eWuHc"
+      data-testid="button"
+    >
+      <svg />
+      prev track
+    </button>
+    <button
+      class="sc-hLBbgP eWuHc"
+      data-testid="button"
+    >
+      <svg />
+      play
+    </button>
+    <button
+      class="sc-hLBbgP eWuHc"
+      data-testid="button"
+    >
+      <svg />
+      next track
+    </button>
+  </div>
+  <div
+    class="sc-jSUZER jBXoGo"
+    data-testid="volume-controls"
+  >
+    <button
+      class="sc-hLBbgP djRQit"
+      data-testid="button"
+    >
+      <svg />
+      mute
+    </button>
+    <div
+      class="sc-gKPRtg mrZYI"
+      data-testid="range-slider"
+    >
+      <input
+        style="--progress-percent: 50%;"
+        type="range"
+        value="50"
+      />
+    </div>
+  </div>
+  <div
+    class="sc-bcXHqe fDkhxT"
+    data-testid="additional-controls"
+  >
+    <button
+      class="sc-hLBbgP djRQit"
+      data-testid="button"
+      download=""
+      href=""
+    >
+      <svg />
+      download track
+    </button>
+    <button
+      aria-label="current playback rate"
+      class="sc-hLBbgP bbygWe sc-eDvSVe eCTlAt"
+      data-testid="button"
+    >
+      1x
+    </button>
+    <button
+      class="sc-hLBbgP djRQit"
+      data-testid="button"
+    >
+      <svg />
+      repeat song infinite
+    </button>
+  </div>
+</div>
+`;
+
+exports[`AudioControls component tests snapshot with default prop values 1`] = `
+<div
+  class="sc-gswNZR ipfQzw"
+  data-testid="audio-controls"
+>
+  <div
+    class="sc-dkrFOg gMtPZj"
+    data-testid="main-controls"
+  >
+    <button
+      class="sc-hLBbgP eWuHc"
+      data-testid="button"
+    >
+      <svg />
+      play
+    </button>
+  </div>
+  <div
+    class="sc-jSUZER jBXoGo"
+    data-testid="volume-controls"
+  >
+    <button
+      class="sc-hLBbgP djRQit"
+      data-testid="button"
+    >
+      <svg />
+      mute
+    </button>
+    <div
+      class="sc-gKPRtg mrZYI"
+      data-testid="range-slider"
+    >
+      <input
+        style="--progress-percent: 50%;"
+        type="range"
+        value="50"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`AudioControls component tests snapshot with isPlayed & isMuted props 1`] = `
+<div
+  class="sc-gswNZR ipfQzw"
+  data-testid="audio-controls"
+>
+  <div
+    class="sc-dkrFOg gMtPZj"
+    data-testid="main-controls"
+  >
+    <button
+      class="sc-hLBbgP eWuHc"
+      data-testid="button"
+    >
+      <svg />
+      pause
+    </button>
+  </div>
+  <div
+    class="sc-jSUZER jBXoGo"
+    data-testid="volume-controls"
+  >
+    <button
+      class="sc-hLBbgP djRQit"
+      data-testid="button"
+    >
+      <svg />
+      unmute
+    </button>
+    <div
+      class="sc-gKPRtg mrZYI"
+      data-testid="range-slider"
+    >
+      <input
+        style="--progress-percent: 50%;"
+        type="range"
+        value="50"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`AudioControls component tests snapshot with showDownloadControl & downloadLink props 1`] = `
+<div
+  class="sc-gswNZR ipfQzw"
+  data-testid="audio-controls"
+>
+  <div
+    class="sc-dkrFOg gMtPZj"
+    data-testid="main-controls"
+  >
+    <button
+      class="sc-hLBbgP eWuHc"
+      data-testid="button"
+    >
+      <svg />
+      play
+    </button>
+  </div>
+  <div
+    class="sc-jSUZER jBXoGo"
+    data-testid="volume-controls"
+  >
+    <button
+      class="sc-hLBbgP djRQit"
+      data-testid="button"
+    >
+      <svg />
+      mute
+    </button>
+    <div
+      class="sc-gKPRtg mrZYI"
+      data-testid="range-slider"
+    >
+      <input
+        style="--progress-percent: 50%;"
+        type="range"
+        value="50"
+      />
+    </div>
+  </div>
+  <div
+    class="sc-bcXHqe fDkhxT"
+    data-testid="additional-controls"
+  >
+    <a
+      class="sc-hLBbgP djRQit"
+      data-testid="button"
+      download=""
+      href="test.mp3"
+    >
+      <svg />
+      download track
+    </a>
+  </div>
+</div>
+`;
+
+exports[`AudioControls component tests snapshot with showLoopControl & isLooped props 1`] = `
+<div
+  class="sc-gswNZR ipfQzw"
+  data-testid="audio-controls"
+>
+  <div
+    class="sc-dkrFOg gMtPZj"
+    data-testid="main-controls"
+  >
+    <button
+      class="sc-hLBbgP eWuHc"
+      data-testid="button"
+    >
+      <svg />
+      play
+    </button>
+  </div>
+  <div
+    class="sc-jSUZER jBXoGo"
+    data-testid="volume-controls"
+  >
+    <button
+      class="sc-hLBbgP djRQit"
+      data-testid="button"
+    >
+      <svg />
+      mute
+    </button>
+    <div
+      class="sc-gKPRtg mrZYI"
+      data-testid="range-slider"
+    >
+      <input
+        style="--progress-percent: 50%;"
+        type="range"
+        value="50"
+      />
+    </div>
+  </div>
+  <div
+    class="sc-bcXHqe fDkhxT"
+    data-testid="additional-controls"
+  >
+    <button
+      class="sc-hLBbgP djRQit"
+      data-testid="button"
+    >
+      <svg />
+      don't repeat the song
+    </button>
+  </div>
+</div>
+`;
+
+exports[`AudioControls component tests snapshot with showLoopControl prop 1`] = `
+<div
+  class="sc-gswNZR ipfQzw"
+  data-testid="audio-controls"
+>
+  <div
+    class="sc-dkrFOg gMtPZj"
+    data-testid="main-controls"
+  >
+    <button
+      class="sc-hLBbgP eWuHc"
+      data-testid="button"
+    >
+      <svg />
+      play
+    </button>
+  </div>
+  <div
+    class="sc-jSUZER jBXoGo"
+    data-testid="volume-controls"
+  >
+    <button
+      class="sc-hLBbgP djRQit"
+      data-testid="button"
+    >
+      <svg />
+      mute
+    </button>
+    <div
+      class="sc-gKPRtg mrZYI"
+      data-testid="range-slider"
+    >
+      <input
+        style="--progress-percent: 50%;"
+        type="range"
+        value="50"
+      />
+    </div>
+  </div>
+  <div
+    class="sc-bcXHqe fDkhxT"
+    data-testid="additional-controls"
+  >
+    <button
+      class="sc-hLBbgP djRQit"
+      data-testid="button"
+    >
+      <svg />
+      repeat song infinite
+    </button>
+  </div>
+</div>
+`;
+
+exports[`AudioControls component tests snapshot with showNextAndPreviousControls prop 1`] = `
+<div
+  class="sc-gswNZR ipfQzw"
+  data-testid="audio-controls"
+>
+  <div
+    class="sc-dkrFOg ccDDgC"
+    data-testid="main-controls"
+  >
+    <button
+      class="sc-hLBbgP eWuHc"
+      data-testid="button"
+    >
+      <svg />
+      prev track
+    </button>
+    <button
+      class="sc-hLBbgP eWuHc"
+      data-testid="button"
+    >
+      <svg />
+      play
+    </button>
+    <button
+      class="sc-hLBbgP eWuHc"
+      data-testid="button"
+    >
+      <svg />
+      next track
+    </button>
+  </div>
+  <div
+    class="sc-jSUZER jBXoGo"
+    data-testid="volume-controls"
+  >
+    <button
+      class="sc-hLBbgP djRQit"
+      data-testid="button"
+    >
+      <svg />
+      mute
+    </button>
+    <div
+      class="sc-gKPRtg mrZYI"
+      data-testid="range-slider"
+    >
+      <input
+        style="--progress-percent: 50%;"
+        type="range"
+        value="50"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`AudioControls component tests snapshot with showPlaybackRateControl & playbackRate props 1`] = `
+<div
+  class="sc-gswNZR ipfQzw"
+  data-testid="audio-controls"
+>
+  <div
+    class="sc-dkrFOg gMtPZj"
+    data-testid="main-controls"
+  >
+    <button
+      class="sc-hLBbgP eWuHc"
+      data-testid="button"
+    >
+      <svg />
+      play
+    </button>
+  </div>
+  <div
+    class="sc-jSUZER jBXoGo"
+    data-testid="volume-controls"
+  >
+    <button
+      class="sc-hLBbgP djRQit"
+      data-testid="button"
+    >
+      <svg />
+      mute
+    </button>
+    <div
+      class="sc-gKPRtg mrZYI"
+      data-testid="range-slider"
+    >
+      <input
+        style="--progress-percent: 50%;"
+        type="range"
+        value="50"
+      />
+    </div>
+  </div>
+  <div
+    class="sc-bcXHqe fDkhxT"
+    data-testid="additional-controls"
+  >
+    <button
+      aria-label="current playback rate"
+      class="sc-hLBbgP bbygWe sc-eDvSVe eCTlAt"
+      data-testid="button"
+    >
+      1.25x
+    </button>
+  </div>
+</div>
+`;
+
+exports[`AudioControls component tests snapshot with showPlaybackRateControl prop 1`] = `
+<div
+  class="sc-gswNZR ipfQzw"
+  data-testid="audio-controls"
+>
+  <div
+    class="sc-dkrFOg gMtPZj"
+    data-testid="main-controls"
+  >
+    <button
+      class="sc-hLBbgP eWuHc"
+      data-testid="button"
+    >
+      <svg />
+      play
+    </button>
+  </div>
+  <div
+    class="sc-jSUZER jBXoGo"
+    data-testid="volume-controls"
+  >
+    <button
+      class="sc-hLBbgP djRQit"
+      data-testid="button"
+    >
+      <svg />
+      mute
+    </button>
+    <div
+      class="sc-gKPRtg mrZYI"
+      data-testid="range-slider"
+    >
+      <input
+        style="--progress-percent: 50%;"
+        type="range"
+        value="50"
+      />
+    </div>
+  </div>
+  <div
+    class="sc-bcXHqe fDkhxT"
+    data-testid="additional-controls"
+  >
+    <button
+      aria-label="current playback rate"
+      class="sc-hLBbgP bbygWe sc-eDvSVe eCTlAt"
+      data-testid="button"
+    >
+      1x
+    </button>
+  </div>
+</div>
+`;
