@@ -61,4 +61,26 @@ describe('Image component tests', () => {
 
     expect(screen.getByAltText(/placeholder image/i)).toHaveClass('test');
   });
+
+  test('snapshot with default prop values', () => {
+    render(
+      <Image />
+    );
+
+    expect(screen.getByRole('img')).toMatchSnapshot();
+  });
+
+  test('snapshot with all the passed props', () => {
+    render(
+      <Image
+        src='a.png'
+        width={20}
+        height={20}
+        className='test'
+        alt='new placeholder image'
+      />
+    );
+
+    expect(screen.getByAltText(/new placeholder image/i)).toMatchSnapshot();
+  });
 });

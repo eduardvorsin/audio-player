@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Image component tests snapshot with all the passed props 1`] = `
+<img
+  alt="new placeholder image"
+  class="sc-bcXHqe fZAhUH test"
+  height="20"
+  src="a.png"
+  width="20"
+/>
+`;
+
+exports[`Image component tests snapshot with default prop values 1`] = `
+<img
+  alt=""
+  class="sc-bcXHqe fZAhUH"
+  height="50"
+  src=""
+  width="50"
+/>
+`;
