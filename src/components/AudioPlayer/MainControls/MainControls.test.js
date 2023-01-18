@@ -77,4 +77,32 @@ describe('Volume Controls component tests', () => {
 
     expect(screen.getByRole('button')).toHaveTextContent(/pause/i);
   });
+
+  test('snapshot with default prop values', () => {
+    render(
+      <MainControls />
+    );
+
+    expect(screen.getByTestId('main-controls')).toMatchSnapshot();
+  });
+
+  test('snapshot with showNextAndPreviousControls prop', () => {
+    render(
+      <MainControls
+        showNextAndPreviousControls
+      />
+    );
+
+    expect(screen.getByTestId('main-controls')).toMatchSnapshot();
+  });
+
+  test('snapshot with isPlayed prop', () => {
+    render(
+      <MainControls
+        isPlayed
+      />
+    );
+
+    expect(screen.getByTestId('main-controls')).toMatchSnapshot();
+  });
 });

@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Volume Controls component tests snapshot with default prop values 1`] = `
+<div
+  class="sc-bcXHqe bTCwa-d"
+  data-testid="main-controls"
+>
+  <button
+    class="sc-gswNZR gicUoi"
+    data-testid="button"
+  >
+    <svg />
+    play
+  </button>
+</div>
+`;
+
+exports[`Volume Controls component tests snapshot with isPlayed prop 1`] = `
+<div
+  class="sc-bcXHqe bTCwa-d"
+  data-testid="main-controls"
+>
+  <button
+    class="sc-gswNZR gicUoi"
+    data-testid="button"
+  >
+    <svg />
+    pause
+  </button>
+</div>
+`;
+
+exports[`Volume Controls component tests snapshot with showNextAndPreviousControls prop 1`] = `
+<div
+  class="sc-bcXHqe lkmtZM"
+  data-testid="main-controls"
+>
+  <button
+    class="sc-gswNZR gicUoi"
+    data-testid="button"
+  >
+    <svg />
+    prev track
+  </button>
+  <button
+    class="sc-gswNZR gicUoi"
+    data-testid="button"
+  >
+    <svg />
+    play
+  </button>
+  <button
+    class="sc-gswNZR gicUoi"
+    data-testid="button"
+  >
+    <svg />
+    next track
+  </button>
+</div>
+`;
