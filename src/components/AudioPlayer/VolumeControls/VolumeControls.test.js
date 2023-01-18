@@ -59,4 +59,20 @@ describe('Volume Controls component tests', () => {
 
     expect(screen.getByRole('button')).toHaveTextContent(/unmute/i);
   });
+
+  test('snapshot with default prop values', () => {
+    render(
+      <VolumeControls />
+    );
+
+    expect(screen.getByTestId('volume-controls')).toMatchSnapshot();
+  });
+
+  test('snapshot with all the passed props', () => {
+    render(
+      <VolumeControls isMuted />
+    );
+
+    expect(screen.getByTestId('volume-controls')).toMatchSnapshot();
+  });
 });

@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Volume Controls component tests snapshot with all the passed props 1`] = `
+<div
+  class="sc-gswNZR buozcK"
+  data-testid="volume-controls"
+>
+  <button
+    class="sc-bcXHqe eFclmf"
+    data-testid="button"
+  >
+    <svg />
+    unmute
+  </button>
+  <div
+    class="sc-dkrFOg kLzxy"
+    data-testid="range-slider"
+  >
+    <input
+      style="--progress-percent: 50%;"
+      type="range"
+      value="50"
+    />
+  </div>
+</div>
+`;
+
+exports[`Volume Controls component tests snapshot with default prop values 1`] = `
+<div
+  class="sc-gswNZR buozcK"
+  data-testid="volume-controls"
+>
+  <button
+    class="sc-bcXHqe eFclmf"
+    data-testid="button"
+  >
+    <svg />
+    mute
+  </button>
+  <div
+    class="sc-dkrFOg kLzxy"
+    data-testid="range-slider"
+  >
+    <input
+      style="--progress-percent: 50%;"
+      type="range"
+      value="50"
+    />
+  </div>
+</div>
+`;
