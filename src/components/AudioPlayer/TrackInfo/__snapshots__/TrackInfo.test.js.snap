@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Track Info component tests snapshot with all the passed props 1`] = `
+<div
+  class="sc-bcXHqe kMOjqp test"
+  data-testid="track-info"
+>
+  <p
+    class="sc-gswNZR hQCPLi"
+    data-testid="track-name"
+  >
+    abc
+  </p>
+  <p
+    class="sc-dkrFOg"
+    data-testid="track-artist"
+  >
+    ccb
+  </p>
+</div>
+`;
+
+exports[`Track Info component tests snapshot with default prop values 1`] = `
+<div
+  class="sc-bcXHqe kMOjqp"
+  data-testid="track-info"
+>
+  <p
+    class="sc-gswNZR hQCPLi"
+    data-testid="track-name"
+  >
+    trackName
+  </p>
+  <p
+    class="sc-dkrFOg"
+    data-testid="track-artist"
+  >
+    trackArtist
+  </p>
+</div>
+`;

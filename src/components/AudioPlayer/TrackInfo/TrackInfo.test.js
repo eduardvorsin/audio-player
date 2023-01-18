@@ -28,4 +28,24 @@ describe('Track Info component tests', () => {
 
     expect(screen.getByTestId('track-info')).toHaveClass('test');
   });
+
+  test('snapshot with default prop values', () => {
+    render(
+      <TrackInfo />
+    );
+
+    expect(screen.getByTestId('track-info')).toMatchSnapshot();
+  });
+
+  test('snapshot with all the passed props', () => {
+    render(
+      <TrackInfo
+        trackName='abc'
+        trackArtist='ccb'
+        className='test'
+      />
+    );
+
+    expect(screen.getByTestId('track-info')).toMatchSnapshot();
+  });
 });
