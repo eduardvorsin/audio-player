@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button component tests snapshot with default prop values 1`] = `
+<button
+  class="sc-bcXHqe dGjfYA"
+  data-testid="button"
+/>
+`;
+
+exports[`Button component tests snapshot with endIcon prop 1`] = `
+<button
+  class="sc-bcXHqe dGjfYA"
+  data-testid="button"
+>
+  <svg
+    title="end icon"
+  />
+</button>
+`;
+
+exports[`Button component tests snapshot with startIcon & endIcon props 1`] = `
+<button
+  class="sc-bcXHqe dGjfYA"
+  data-testid="button"
+>
+  <svg
+    title="start icon"
+  />
+  <svg
+    title="end icon"
+  />
+</button>
+`;
+
+exports[`Button component tests snapshot with startIcon prop 1`] = `
+<button
+  class="sc-bcXHqe dGjfYA"
+  data-testid="button"
+>
+  <svg
+    title="start icon"
+  />
+</button>
+`;

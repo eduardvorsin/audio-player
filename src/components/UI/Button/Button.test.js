@@ -95,4 +95,43 @@ describe('Button component tests', () => {
 
     expect(screen.getByRole('button')).toHaveClass('test');
   });
+
+  test('snapshot with default prop values', () => {
+    render(
+      <Button />
+    );
+
+    expect(screen.getByTestId('button')).toMatchSnapshot();
+  });
+
+  test('snapshot with startIcon prop', () => {
+    render(
+      <Button
+        startIcon={<MockIcon title='start icon' />}
+      />
+    );
+
+    expect(screen.getByTestId('button')).toMatchSnapshot();
+  });
+
+  test('snapshot with endIcon prop', () => {
+    render(
+      <Button
+        endIcon={<MockIcon title='end icon' />}
+      />
+    );
+
+    expect(screen.getByTestId('button')).toMatchSnapshot();
+  });
+
+  test('snapshot with startIcon & endIcon props', () => {
+    render(
+      <Button
+        startIcon={<MockIcon title='start icon' />}
+        endIcon={<MockIcon title='end icon' />}
+      />
+    );
+
+    expect(screen.getByTestId('button')).toMatchSnapshot();
+  });
 });
