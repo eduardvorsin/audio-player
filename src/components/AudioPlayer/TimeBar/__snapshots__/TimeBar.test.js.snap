@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TimeBar component tests snapshot with all the passed props 1`] = `
+<time
+  class="sc-bcXHqe dFrouj test"
+  data-testid="time-bar"
+>
+  5:26
+  /
+  10:30
+</time>
+`;
+
+exports[`TimeBar component tests snapshot with default prop values 1`] = `
+<time
+  class="sc-bcXHqe dFrouj"
+  data-testid="time-bar"
+>
+  00:00
+  /
+  00:00
+</time>
+`;

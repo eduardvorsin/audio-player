@@ -18,4 +18,24 @@ describe('TimeBar component tests', () => {
 
     expect(screen.getByText('00:00/00:00')).toBeInTheDocument();
   });
+
+  test('snapshot with default prop values', () => {
+    render(
+      <TimeBar />
+    );
+
+    expect(screen.getByTestId('time-bar')).toMatchSnapshot();
+  });
+
+  test('snapshot with all the passed props', () => {
+    render(
+      <TimeBar
+        duration='10:30'
+        currentTime='5:26'
+        className='test'
+      />
+    );
+
+    expect(screen.getByTestId('time-bar')).toMatchSnapshot();
+  });
 });
