@@ -325,9 +325,9 @@ describe('AudioPlayer component tests', () => {
     );
     const progressSlider = screen.getAllByRole('slider')[0];
 
-    expect(screen.getByTitle('time')).toHaveTextContent(/0:00.+/);
+    expect(screen.getByTestId('time-bar')).toHaveTextContent(/0:00.+/);
     fireEvent.change(progressSlider, { target: { value: 34 } });
-    expect(screen.getByTitle('time')).toHaveTextContent(/0:34.+/);
+    expect(screen.getByTestId('time-bar')).toHaveTextContent(/0:34.+/);
   });
 
 
@@ -526,5 +526,92 @@ describe('AudioPlayer component tests', () => {
     await user.keyboard('{l>2/}');
 
     expect(screen.queryByTitle('audio').loop).toBeFalsy();
+  });
+
+  test('snapshot with default prop values', () => {
+    render(
+      <AudioPlayer />
+    );
+
+    expect(screen.getByTestId('audio-player')).toMatchSnapshot();
+  });
+
+  test('snapshot with showDownloadControl prop', () => {
+    render(
+      <AudioPlayer
+        showDownloadControl
+      />
+    );
+
+    expect(screen.getByTestId('audio-player')).toMatchSnapshot();
+  });
+
+  test('snapshot with showPlaybackRateControl prop', () => {
+    render(
+      <AudioPlayer
+        showPlaybackRateControl
+      />
+    );
+
+    expect(screen.getByTestId('audio-player')).toMatchSnapshot();
+  });
+
+  test('snapshot with showLoopControl prop', () => {
+    render(
+      <AudioPlayer
+        showLoopControl
+      />
+    );
+
+    expect(screen.getByTestId('audio-player')).toMatchSnapshot();
+  });
+
+  test('snapshot showNextAndPreviousControls prop', () => {
+    render(
+      <AudioPlayer
+        showNextAndPreviousControls
+      />
+    );
+
+    expect(screen.getByTestId('audio-player')).toMatchSnapshot();
+  });
+
+  test('snapshot src prop', () => {
+    render(
+      <AudioPlayer
+        src='test.wav'
+      />
+    );
+
+    expect(screen.getByTestId('audio-player')).toMatchSnapshot();
+  });
+
+  test('snapshot src & sources props', () => {
+    render(
+      <AudioPlayer
+        src='test.wav'
+        sources={['test2.ogg', 'test3.mp3']}
+      />
+    );
+
+    expect(screen.getByTestId('audio-player')).toMatchSnapshot();
+  });
+
+  test('snapshot with all the props affecting the UI', () => {
+    render(
+      <AudioPlayer
+        trackName='track'
+        trackArtist='artist'
+        src='greatsong.mp3'
+        sources={['greatsong.wav']}
+        showDownloadControl
+        showPlaybackRateControl
+        showLoopControl
+        showNextAndPreviousControls
+        className='test'
+      />
+    );
+
+    expect(screen.getByTestId('audio-player')).toMatchSnapshot();
   });
 });
