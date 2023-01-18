@@ -42,7 +42,7 @@ exports[`AudioControls component tests snapshot with a modified volume prop 1`] 
 </div>
 `;
 
-exports[`AudioControls component tests snapshot with all props starting with the word "show" 1`] = `
+exports[`AudioControls component tests snapshot with all the props affecting the UI 1`] = `
 <div
   class="sc-gswNZR ipfQzw"
   data-testid="audio-controls"

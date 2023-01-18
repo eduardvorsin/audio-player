@@ -32,7 +32,7 @@ exports[`AdditionalControls component tests snapshot showLoopControl & isLooped 
 </div>
 `;
 
-exports[`AdditionalControls component tests snapshot with all props starting with the word "show" & downloadLink 1`] = `
+exports[`AdditionalControls component tests snapshot with all the props affecting the UI 1`] = `
 <div
   class="sc-bcXHqe fDkhxT"
   data-testid="additional-controls"
