@@ -1,0 +1,116 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AdditionalControls component tests snapshot showDownloadControl & downloadLink props 1`] = `
+<div
+  class="sc-bcXHqe fDkhxT"
+  data-testid="additional-controls"
+>
+  <a
+    class="sc-gswNZR ivOWdj"
+    data-testid="button"
+    download=""
+    href="test.ogg"
+  >
+    <svg />
+    download track
+  </a>
+</div>
+`;
+
+exports[`AdditionalControls component tests snapshot showLoopControl & isLooped props 1`] = `
+<div
+  class="sc-bcXHqe fDkhxT"
+  data-testid="additional-controls"
+>
+  <button
+    class="sc-gswNZR ivOWdj"
+    data-testid="button"
+  >
+    <svg />
+    don't repeat the song
+  </button>
+</div>
+`;
+
+exports[`AdditionalControls component tests snapshot with all props starting with the word "show" & downloadLink 1`] = `
+<div
+  class="sc-bcXHqe fDkhxT"
+  data-testid="additional-controls"
+>
+  <a
+    class="sc-gswNZR ivOWdj"
+    data-testid="button"
+    download=""
+    href="test.wav"
+  >
+    <svg />
+    download track
+  </a>
+  <button
+    aria-label="current playback rate"
+    class="sc-gswNZR fzhZbU sc-dkrFOg egzGNd"
+    data-testid="button"
+  >
+    1x
+  </button>
+  <button
+    class="sc-gswNZR ivOWdj"
+    data-testid="button"
+  >
+    <svg />
+    repeat song infinite
+  </button>
+</div>
+`;
+
+exports[`AdditionalControls component tests snapshot with default prop values 1`] = `
+<div
+  class="sc-bcXHqe fDkhxT"
+  data-testid="additional-controls"
+/>
+`;
+
+exports[`AdditionalControls component tests snapshot with showLoopControl prop 1`] = `
+<div
+  class="sc-bcXHqe fDkhxT"
+  data-testid="additional-controls"
+>
+  <button
+    class="sc-gswNZR ivOWdj"
+    data-testid="button"
+  >
+    <svg />
+    repeat song infinite
+  </button>
+</div>
+`;
+
+exports[`AdditionalControls component tests snapshot with showPlaybackRateControl & playbackRate props 1`] = `
+<div
+  class="sc-bcXHqe fDkhxT"
+  data-testid="additional-controls"
+>
+  <button
+    aria-label="current playback rate"
+    class="sc-gswNZR fzhZbU sc-dkrFOg egzGNd"
+    data-testid="button"
+  >
+    1.5x
+  </button>
+</div>
+`;
+
+exports[`AdditionalControls component tests snapshot with showPlaybackRateControl prop 1`] = `
+<div
+  class="sc-bcXHqe fDkhxT"
+  data-testid="additional-controls"
+>
+  <button
+    aria-label="current playback rate"
+    class="sc-gswNZR fzhZbU sc-dkrFOg egzGNd"
+    data-testid="button"
+  >
+    1x
+  </button>
+</div>
+`;

@@ -77,4 +77,79 @@ describe('AdditionalControls component tests', () => {
 
     expect(screen.getByRole('link').href).toMatch(/(abc)+/i);
   });
+
+  test('snapshot with default prop values', () => {
+    render(
+      <AdditionalControls />
+    );
+
+    expect(screen.getByTestId('additional-controls')).toMatchSnapshot();
+  });
+
+  test('snapshot with showPlaybackRateControl prop', () => {
+    render(
+      <AdditionalControls
+        showPlaybackRateControl
+      />
+    );
+
+    expect(screen.getByTestId('additional-controls')).toMatchSnapshot();
+  });
+
+  test('snapshot with showPlaybackRateControl & playbackRate props', () => {
+    render(
+      <AdditionalControls
+        showPlaybackRateControl
+        playbackRate={1.5}
+      />
+    );
+
+    expect(screen.getByTestId('additional-controls')).toMatchSnapshot();
+  });
+
+  test('snapshot with showLoopControl prop', () => {
+    render(
+      <AdditionalControls
+        showLoopControl
+      />
+    );
+
+    expect(screen.getByTestId('additional-controls')).toMatchSnapshot();
+  });
+
+  test('snapshot showLoopControl & isLooped props', () => {
+    render(
+      <AdditionalControls
+        showLoopControl
+        isLooped
+      />
+    );
+
+    expect(screen.getByTestId('additional-controls')).toMatchSnapshot();
+  });
+
+  test('snapshot showDownloadControl & downloadLink props', () => {
+    render(
+      <AdditionalControls
+        showDownloadControl
+        downloadLink='test.ogg'
+      />
+    );
+
+    expect(screen.getByTestId('additional-controls')).toMatchSnapshot();
+  });
+
+  test('snapshot with all the props affecting the UI', () => {
+    render(
+      <AdditionalControls
+        downloadLink='test.wav'
+        showDownloadControl
+        showPlaybackRateControl
+        showLoopControl
+        className='test'
+      />
+    );
+
+    expect(screen.getByTestId('additional-controls')).toMatchSnapshot();
+  });
 });
