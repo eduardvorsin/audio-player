@@ -1,7 +1,11 @@
 import styled from "styled-components";
 import { StyledButton } from "../../UI/Button/StyledButton";
 
-export const StyledVolumeControls = styled.div`
+interface StyledVolumeControlsProps {
+	className?: string;
+}
+
+export const StyledVolumeControls = styled.div<StyledVolumeControlsProps>`
 	display: flex;
 	align-self: flex-end;
 	align-items: center;

@@ -19,7 +19,6 @@ exports[`Volume Controls component tests snapshot with all the passed props 1`] 
     <input
       style="--progress-percent: 50%;"
       type="range"
-      value="50"
     />
   </div>
 </div>
@@ -44,7 +43,6 @@ exports[`Volume Controls component tests snapshot with default prop values 1`] =
     <input
       style="--progress-percent: 50%;"
       type="range"
-      value="50"
     />
   </div>
 </div>
