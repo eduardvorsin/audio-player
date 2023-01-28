@@ -1,13 +1,13 @@
 import React, { useCallback, useEffect, useReducer, useRef } from "react";
-import PropTypes from 'prop-types';
 import { createInitialState } from "../../state/state";
 import { reducer } from "../../state/reducers/reducer";
 import { AudioControls } from './AudioControls/AudioControls';
 import { StyledAudioPlayer } from "./StyledAudioPlayer";
 import { ProgressRangeSlider } from "./ProgressRangeSlider/ProgressRangeSlider";
 import { TimeBar } from "./TimeBar/TimeBar";
-import { formatTime } from "../../helpers/helpers";
+import { formatTime, isCorrectAudioFormat } from "../../helpers/helpers";
 import { TrackInfo } from "./TrackInfo/TrackInfo";
+
 import {
   changeCurrentTimeAC,
   changeDurationAC,
@@ -21,25 +21,38 @@ import {
   unmuteAudioAC
 } from "../../state/actions/actionCreators";
 
-const audioFormatsRegexp = /\.(ogg|mp3|wav|aac|webm|flac)$/;
 
-export const AudioPlayer = ({
-  src,
-  trackName,
-  trackArtist,
-  sources,
-  showDownloadControl,
-  className,
-  showPlaybackRateControl,
-  showLoopControl,
-  showNextAndPreviousControls,
-  onClickPrevious,
-  onClickNext,
+interface AudioPlayerProps extends Partial<React.AudioHTMLAttributes<HTMLAudioElement>> {
+  src: string,
+  sources?: string[],
+  trackName?: string,
+  trackArtist?: string,
+  className?: string,
+  showDownloadControl?: boolean,
+  showPlaybackRateControl?: boolean,
+  showLoopControl?: boolean,
+  showNextAndPreviousControls?: boolean,
+  onClickPrevious?: React.MouseEventHandler<HTMLButtonElement>,
+  onClickNext?: (e?: React.MouseEvent<HTMLButtonElement>) => void,
+}
+
+export const AudioPlayer: React.FC<AudioPlayerProps> = ({
+  trackName = '',
+  trackArtist = '',
+  src = '',
+  className = '',
+  sources = [''],
+  showDownloadControl = false,
+  showPlaybackRateControl = false,
+  showLoopControl = false,
+  showNextAndPreviousControls = false,
+  onClickPrevious = () => { },
+  onClickNext = () => { },
   ...props
 }) => {
 
-  const audioRef = useRef(null);
-  const progressBar = useRef(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const progressBar = useRef<HTMLInputElement | null>(null);
 
   const [state, dispatch] = useReducer(reducer, {
     muted: props.muted,
@@ -47,15 +60,21 @@ export const AudioPlayer = ({
   }, createInitialState);
 
   useEffect(() => {
+    if (!audioRef.current) return;
+
     const audio = audioRef.current;
 
-    const onLoadedmetadata = () => {
+    const loadedMetadataHandler = (): void => {
+      if (!progressBar.current) return;
+
       const duration = Math.floor(audio.duration);
-      progressBar.current.max = duration;
+      progressBar.current.max = `${duration}`;
       dispatch(changeDurationAC(duration));
     };
 
-    const canPlayThrough = () => {
+    const canPlayThroughHandler = (): void => {
+      if (!audioRef.current) return;
+
       const playPromise = audioRef.current.play();
       playPromise.then(_ => {
         dispatch(playAudioAC());
@@ -64,15 +83,18 @@ export const AudioPlayer = ({
       });
     }
 
-    audio.addEventListener('loadedmetadata', onLoadedmetadata);
-    audio.addEventListener('canplaythrough', canPlayThrough);
+    audio.addEventListener('loadedmetadata', loadedMetadataHandler);
+    audio.addEventListener('canplaythrough', canPlayThroughHandler);
+
     return (() => {
-      audio.removeEventListener('loadedmetadata', onLoadedmetadata);
-      audio.removeEventListener('canplaythrough', canPlayThrough);
+      audio.removeEventListener('loadedmetadata', loadedMetadataHandler);
+      audio.removeEventListener('canplaythrough', canPlayThroughHandler);
     })
   }, []);
 
   useEffect(() => {
+    if (!audioRef.current) return;
+
     const isZeroVolume = state.volume < 1;
     const nextAction = isZeroVolume ? muteAudioAC() : unmuteAudioAC();
     dispatch(nextAction);
@@ -81,11 +103,15 @@ export const AudioPlayer = ({
   }, [state.volume]);
 
   useEffect(() => {
+    if (!audioRef.current) return;
+
     audioRef.current.playbackRate = 1;
     dispatch(changePlaybackRateAC(audioRef.current.playbackRate));
   }, [src]);
 
   const togglePlaying = useCallback(() => {
+    if (!audioRef.current) return;
+
     if (state.isPlayed) {
       audioRef.current.pause();
       dispatch(pauseAudioAC());
@@ -100,17 +126,22 @@ export const AudioPlayer = ({
   }, [state.isPlayed]);
 
   const toggleMuting = useCallback(() => {
+    if (!audioRef.current) return;
+
     const nextAction = state.isMuted ? unmuteAudioAC() : muteAudioAC();
     dispatch(nextAction);
 
     audioRef.current.muted = state.isMuted;
   }, [state.isMuted]);
 
-  const onVolumeChange = useCallback((e) => {
-    dispatch(changeVolumeAC(+e.target.value))
+  const onVolumeChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const volumeAsNumber = Number(e.target.value);
+    dispatch(changeVolumeAC(volumeAsNumber));
   }, []);
 
   const changeLooping = useCallback(() => {
+    if (!audioRef.current) return;
+
     const nextAction = state.isLooped ? unloopAudioAC() : loopAudioAC();
     dispatch(nextAction);
 
@@ -118,6 +149,8 @@ export const AudioPlayer = ({
   }, [state.isLooped]);
 
   const changePlaybackRate = useCallback(() => {
+    if (!audioRef.current) return;
+
     const { playbackRate } = audioRef.current;
     const nextPlaybackRateValue = playbackRate === 2 ? 0.25 : playbackRate + 0.25;
     audioRef.current.playbackRate = nextPlaybackRateValue;
@@ -125,19 +158,21 @@ export const AudioPlayer = ({
     dispatch(changePlaybackRateAC(audioRef.current.playbackRate));
   }, []);
 
-  const onPlaying = () => {
+  const playingHandler = (): void => {
+    if (!audioRef.current || !progressBar.current) return;
+
     const currentTime = Math.floor(audioRef.current.currentTime);
-    progressBar.current.value = currentTime;
+    progressBar.current.value = `${currentTime}`;
 
     dispatch(changeCurrentTimeAC(+progressBar.current.value));
 
-    const calculatedPercent =
-      progressBar.current.value * 100 / progressBar.current.max;
+    const { value, max } = progressBar.current;
+    const calculatedPercent = Number(value) * 100 / Number(max);
 
-    progressBar.current.style = `--progress-percent:${calculatedPercent || 0}%;`;
+    progressBar.current.setAttribute('style', `--progress-percent:${calculatedPercent || 0}%;`);
   }
 
-  const onEnded = () => {
+  const endedHandler: React.ReactEventHandler<HTMLAudioElement> = () => {
     if (!state.isLooped) {
       onClickNext();
       dispatch(pauseAudioAC());
@@ -145,27 +180,33 @@ export const AudioPlayer = ({
     }
   }
 
-  const onProgressChange = () => {
-    audioRef.current.currentTime = +progressBar.current.value;
-    dispatch(changeCurrentTimeAC(+progressBar.current.value));
+  const progressHandler: React.ChangeEventHandler<HTMLInputElement> = (): void => {
+    if (!audioRef.current || !progressBar.current) return;
+
+    const progressValueAsNumber = Number(progressBar.current.value);
+
+    audioRef.current.currentTime = progressValueAsNumber;
+    dispatch(changeCurrentTimeAC(progressValueAsNumber));
   }
 
-  const setProgress = (value) => {
+  const setProgress = (value: number): void => {
+    if (!audioRef.current || !progressBar.current) return;
+
     dispatch(changeCurrentTimeAC(value));
-    progressBar.current.value = value;
+    progressBar.current.value = `${value}`;
     audioRef.current.currentTime = value;
   };
 
-  const incrementVolume = () => {
+  const incrementVolume = (): void => {
     dispatch(changeVolumeAC(state.volume + 1));
   };
 
-  const decrementVolume = () => {
+  const decrementVolume = (): void => {
     dispatch(changeVolumeAC(state.volume - 1));
   };
 
-  const onKeyDown = (e) => {
-    if (document.activeElement.tagName !== 'DIV') return false;
+  const keyDownHandler: React.KeyboardEventHandler<HTMLDivElement> = (e) => {
+    if (document.activeElement?.tagName !== 'DIV') return false;
 
     switch (e.key) {
       case ' ':
@@ -197,7 +238,7 @@ export const AudioPlayer = ({
   return (
     <StyledAudioPlayer
       tabIndex={0}
-      onKeyDown={onKeyDown}
+      onKeyDown={keyDownHandler}
       title='audio-player'
       data-testid='audio-player'
     >
@@ -206,14 +247,15 @@ export const AudioPlayer = ({
         src={src}
         muted={state.isMuted}
         loop={state.isLooped}
-        onEnded={onEnded}
-        onTimeUpdate={onPlaying}
+        onEnded={endedHandler}
+        onTimeUpdate={playingHandler}
         title='audio'
         {...props}
       >
         {sources.map(source => {
-          const format = source.match(/\.\w+$/)?.[0].slice(1);
-          if (!format) return null;
+          if (isCorrectAudioFormat(source)) return null;
+          const format = source.slice(source.lastIndexOf('.'));
+
           return <source
             key={source}
             src={source}
@@ -222,10 +264,12 @@ export const AudioPlayer = ({
         })}
       </audio>
 
-      <TrackInfo
-        trackName={trackName}
-        trackArtist={trackArtist}
-      />
+      {(trackName.length && trackArtist.length) &&
+        <TrackInfo
+          trackName={trackName}
+          trackArtist={trackArtist}
+        />
+      }
 
       <TimeBar
         currentTime={formatTime(state.currentTime)}
@@ -234,7 +278,7 @@ export const AudioPlayer = ({
 
       <ProgressRangeSlider
         ref={progressBar}
-        onChange={onProgressChange}
+        onChange={progressHandler}
       />
 
       <AudioControls
@@ -258,50 +302,4 @@ export const AudioPlayer = ({
       />
     </StyledAudioPlayer>
   );
-}
-
-AudioPlayer.propTypes = {
-  trackName: PropTypes.string,
-  trackArtist: PropTypes.string,
-  showDownloadControl: PropTypes.bool,
-  className: PropTypes.string,
-  showPlaybackRateControl: PropTypes.bool,
-  showLoopControl: PropTypes.bool,
-  showNextAndPreviousControls: PropTypes.bool,
-  onClickPrevious: PropTypes.func,
-  onClickNext: PropTypes.func,
-  src: function (props, propName, componentName) {
-    if (typeof props[propName] !== 'string') {
-      throw new Error(`Invalid type of prop ${propName}, expected to get string in ${componentName} component`);
-    }
-
-    if (!props[propName].match(audioFormatsRegexp)) {
-      throw new Error(`Invalid value for prop ${propName}, expected in the trackname.extension format in the ${componentName} component`);
-    }
-  },
-  sources: PropTypes.arrayOf(function (propValue, key, componentName, location, propFullName) {
-    propValue.forEach(prop => {
-      if (typeof prop !== 'string') {
-        throw new Error(`Invalid type of prop ${propFullName}, expected to get string in ${componentName} component`);
-      }
-
-      if (!prop.match(audioFormatsRegexp)) {
-        throw new Error(`Invalid value for prop ${propFullName}, expected in the trackname.extension format in the ${componentName} component`);
-      }
-    });
-  }),
-}
-
-AudioPlayer.defaultProps = {
-  src: 'abc.mp3',
-  trackName: '',
-  trackArtist: '',
-  sources: ['abc.ogg'],
-  showDownloadControl: false,
-  className: '',
-  showPlaybackRateControl: false,
-  showLoopControl: false,
-  showNextAndPreviousControls: false,
-  onClickPrevious: () => { },
-  onClickNext: () => { },
 }

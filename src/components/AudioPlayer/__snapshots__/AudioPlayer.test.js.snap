@@ -388,7 +388,7 @@ exports[`AudioPlayer component tests snapshot with all the props affecting the U
       class="sc-bcXHqe fDkhxT"
       data-testid="additional-controls"
     >
-      <a
+      <button
         class="sc-hLBbgP djRQit"
         data-testid="button"
         download=""
@@ -396,7 +396,7 @@ exports[`AudioPlayer component tests snapshot with all the props affecting the U
       >
         <svg />
         download track
-      </a>
+      </button>
       <button
         aria-label="current playback rate"
         class="sc-hLBbgP bbygWe sc-eDvSVe eCTlAt"
@@ -592,7 +592,7 @@ exports[`AudioPlayer component tests snapshot with showDownloadControl prop 1`] 
       class="sc-bcXHqe fDkhxT"
       data-testid="additional-controls"
     >
-      <a
+      <button
         class="sc-hLBbgP djRQit"
         data-testid="button"
         download=""
@@ -600,7 +600,7 @@ exports[`AudioPlayer component tests snapshot with showDownloadControl prop 1`] 
       >
         <svg />
         download track
-      </a>
+      </button>
     </div>
   </div>
 </div>
