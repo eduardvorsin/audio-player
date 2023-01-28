@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import React from "react";
 import { TimeBar } from "./TimeBar";
 
 describe('TimeBar component tests', () => {
@@ -10,13 +11,13 @@ describe('TimeBar component tests', () => {
       />
     );
 
-    expect(screen.getByText('2:43/5:21')).toBeInTheDocument();
+    expect(screen.getByText<HTMLTimeElement>('2:43/5:21')).toBeInTheDocument();
   });
 
   test('renders without passed props', () => {
     render(<TimeBar />);
 
-    expect(screen.getByText('00:00/00:00')).toBeInTheDocument();
+    expect(screen.getByText<HTMLTimeElement>('00:00/00:00')).toBeInTheDocument();
   });
 
   test('snapshot with default prop values', () => {
@@ -24,7 +25,7 @@ describe('TimeBar component tests', () => {
       <TimeBar />
     );
 
-    expect(screen.getByTestId('time-bar')).toMatchSnapshot();
+    expect(screen.getByTestId<HTMLTimeElement>('time-bar')).toMatchSnapshot();
   });
 
   test('snapshot with all the passed props', () => {
@@ -36,6 +37,6 @@ describe('TimeBar component tests', () => {
       />
     );
 
-    expect(screen.getByTestId('time-bar')).toMatchSnapshot();
+    expect(screen.getByTestId<HTMLTimeElement>('time-bar')).toMatchSnapshot();
   });
 });
