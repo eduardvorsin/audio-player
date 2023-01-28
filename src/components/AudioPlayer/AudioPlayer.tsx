@@ -37,9 +37,9 @@ interface AudioPlayerProps extends Partial<React.AudioHTMLAttributes<HTMLAudioEl
 }
 
 export const AudioPlayer: React.FC<AudioPlayerProps> = ({
+  src,
   trackName = '',
   trackArtist = '',
-  src = '',
   className = '',
   sources = [''],
   showDownloadControl = false,
