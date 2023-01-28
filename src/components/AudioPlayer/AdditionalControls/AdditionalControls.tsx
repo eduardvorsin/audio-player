@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { StyledAdditionalControls } from "./StyledAdditionalControls";
 import { Button } from "../../UI/Button/Button";
 import { PlaybackRateButton } from "../PlaybackRateButton/PlaybackRateButton";
@@ -7,25 +6,40 @@ import { ReactComponent as RepeatIcon } from '../../../assets/images/icons/repea
 import { ReactComponent as NoRepeatIcon } from '../../../assets/images/icons/no-repeat.svg';
 import { ReactComponent as DownloadIcon } from '../../../assets/images/icons/download.svg';
 
-export const AdditionalControls = React.memo(({
-  showDownloadControl,
-  downloadLink,
-  showPlaybackRateControl,
-  changePlaybackRate,
-  playbackRate,
-  showLoopControl,
-  changeLooping,
-  isLooped,
+interface AdditionalControlsProps {
+  downloadLink?: string,
+  className?: string,
+  playbackRate?: number,
+  showDownloadControl?: boolean,
+  showPlaybackRateControl?: boolean,
+  showLoopControl?: boolean,
+  isLooped?: boolean,
+  changePlaybackRate?: React.MouseEventHandler<HTMLButtonElement>,
+  changeLooping?: React.MouseEventHandler<HTMLButtonElement>,
+}
+
+export const AdditionalControls = React.memo<AdditionalControlsProps>(({
+  className = '',
+  playbackRate = 1,
+  downloadLink = '',
+  showDownloadControl = false,
+  showPlaybackRateControl = false,
+  showLoopControl = false,
+  isLooped = false,
+  changePlaybackRate = () => { },
+  changeLooping = () => { },
 }) => {
 
   const repeatButtonIcon = isLooped ? <RepeatIcon /> : <NoRepeatIcon />;
 
   return (
     <StyledAdditionalControls
+      className={className}
       data-testid='additional-controls'
     >
       {showDownloadControl &&
         <Button
+          as='a'
           withoutVisibleText
           href={downloadLink}
           startIcon={<DownloadIcon />}
@@ -34,6 +48,7 @@ export const AdditionalControls = React.memo(({
           download track
         </Button>
       }
+
       {showPlaybackRateControl &&
         <PlaybackRateButton
           aria-label='current playback rate'
@@ -42,6 +57,7 @@ export const AdditionalControls = React.memo(({
           {`${playbackRate}x`}
         </PlaybackRateButton>
       }
+
       {showLoopControl &&
         <Button
           withoutVisibleText
@@ -54,25 +70,3 @@ export const AdditionalControls = React.memo(({
     </StyledAdditionalControls>
   );
 });
-
-AdditionalControls.propTypes = {
-  showDownloadControl: PropTypes.bool,
-  downloadLink: PropTypes.string,
-  showPlaybackRateControl: PropTypes.bool,
-  changePlaybackRate: PropTypes.func,
-  playbackRate: PropTypes.number,
-  showLoopControl: PropTypes.bool,
-  changeLooping: PropTypes.func,
-  isLooped: PropTypes.bool,
-};
-
-AdditionalControls.defaultProps = {
-  showDownloadControl: false,
-  downloadLink: '',
-  showPlaybackRateControl: false,
-  changePlaybackRate: () => { },
-  playbackRate: 1,
-  showLoopControl: false,
-  changeLooping: () => { },
-  isLooped: false,
-};

@@ -1,10 +1,12 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import React from "react";
 import { AdditionalControls } from "./AdditionalControls";
 
 describe('AdditionalControls component tests', () => {
   test('renders correctly', () => {
-    const mockFn = jest.fn();
+    const mockFn = jest.fn<void, [React.MouseEvent<HTMLButtonElement>]>();
+
     render(<AdditionalControls
       showDownloadControl
       showPlaybackRateControl
@@ -13,18 +15,19 @@ describe('AdditionalControls component tests', () => {
       changeLooping={mockFn}
     />);
 
-    expect(screen.getAllByRole('button')).toHaveLength(3);
+    expect(screen.getAllByRole<HTMLButtonElement>('button')).toHaveLength(2);
+    expect(screen.getAllByRole<HTMLAnchorElement>('link')).toHaveLength(1);
   });
 
   test('renders without passed props', () => {
     render(<AdditionalControls />);
 
-    expect(screen.queryByRole('button')).not.toBeInTheDocument();
+    expect(screen.queryByRole<HTMLButtonElement>('button')).not.toBeInTheDocument();
   });
 
   test('when the playback rate button is clicked, the mock function is triggered', async () => {
     const user = userEvent.setup();
-    const mockFn = jest.fn();
+    const mockFn = jest.fn<void, [React.MouseEvent<HTMLButtonElement>]>();
     render(
       <AdditionalControls
         showPlaybackRateControl
@@ -32,20 +35,20 @@ describe('AdditionalControls component tests', () => {
       />
     );
 
-    await user.click(screen.getByRole('button'));
+    await user.click(screen.getByRole<HTMLButtonElement>('button'));
 
     expect(mockFn).toBeCalledTimes(1);
   });
 
   test('when the loop button is clicked, the mock function is triggered', async () => {
     const user = userEvent.setup();
-    const mockFn = jest.fn();
+    const mockFn = jest.fn<void, [React.MouseEvent<HTMLButtonElement>]>();
     render(<AdditionalControls
       showLoopControl
       changeLooping={mockFn}
     />);
 
-    await user.click(screen.getByRole('button'));
+    await user.click(screen.getByRole<HTMLButtonElement>('button'));
 
     expect(mockFn).toBeCalledTimes(1);
   });
@@ -57,7 +60,7 @@ describe('AdditionalControls component tests', () => {
       showLoopControl
     />);
 
-    expect(screen.getByRole('button')).toHaveTextContent('don\'t repeat the song');
+    expect(screen.getByRole<HTMLButtonElement>('button')).toHaveTextContent('don\'t repeat the song');
   });
 
   test('playbackRate prop value correctly passed', () => {
@@ -66,7 +69,7 @@ describe('AdditionalControls component tests', () => {
       playbackRate={1.5}
     />);
 
-    expect(screen.getByRole('button')).toHaveTextContent('1.5x');
+    expect(screen.getByRole<HTMLButtonElement>('button')).toHaveTextContent('1.5x');
   });
 
   test('downloadLink prop value correctly passed', () => {
@@ -75,7 +78,7 @@ describe('AdditionalControls component tests', () => {
       downloadLink='abc'
     />);
 
-    expect(screen.getByRole('link').href).toMatch(/(abc)+/i);
+    expect(screen.getByRole<HTMLAnchorElement>('link').href).toMatch(/(abc)+/i);
   });
 
   test('snapshot with default prop values', () => {
@@ -83,7 +86,7 @@ describe('AdditionalControls component tests', () => {
       <AdditionalControls />
     );
 
-    expect(screen.getByTestId('additional-controls')).toMatchSnapshot();
+    expect(screen.getByTestId<HTMLDivElement>('additional-controls')).toMatchSnapshot();
   });
 
   test('snapshot with showPlaybackRateControl prop', () => {
@@ -93,7 +96,7 @@ describe('AdditionalControls component tests', () => {
       />
     );
 
-    expect(screen.getByTestId('additional-controls')).toMatchSnapshot();
+    expect(screen.getByTestId<HTMLDivElement>('additional-controls')).toMatchSnapshot();
   });
 
   test('snapshot with showPlaybackRateControl & playbackRate props', () => {
@@ -104,7 +107,7 @@ describe('AdditionalControls component tests', () => {
       />
     );
 
-    expect(screen.getByTestId('additional-controls')).toMatchSnapshot();
+    expect(screen.getByTestId<HTMLDivElement>('additional-controls')).toMatchSnapshot();
   });
 
   test('snapshot with showLoopControl prop', () => {
@@ -114,7 +117,7 @@ describe('AdditionalControls component tests', () => {
       />
     );
 
-    expect(screen.getByTestId('additional-controls')).toMatchSnapshot();
+    expect(screen.getByTestId<HTMLDivElement>('additional-controls')).toMatchSnapshot();
   });
 
   test('snapshot showLoopControl & isLooped props', () => {
@@ -125,7 +128,7 @@ describe('AdditionalControls component tests', () => {
       />
     );
 
-    expect(screen.getByTestId('additional-controls')).toMatchSnapshot();
+    expect(screen.getByTestId<HTMLDivElement>('additional-controls')).toMatchSnapshot();
   });
 
   test('snapshot showDownloadControl & downloadLink props', () => {
@@ -136,7 +139,7 @@ describe('AdditionalControls component tests', () => {
       />
     );
 
-    expect(screen.getByTestId('additional-controls')).toMatchSnapshot();
+    expect(screen.getByTestId<HTMLDivElement>('additional-controls')).toMatchSnapshot();
   });
 
   test('snapshot with all the props affecting the UI', () => {
@@ -150,6 +153,6 @@ describe('AdditionalControls component tests', () => {
       />
     );
 
-    expect(screen.getByTestId('additional-controls')).toMatchSnapshot();
+    expect(screen.getByTestId<HTMLDivElement>('additional-controls')).toMatchSnapshot();
   });
 });

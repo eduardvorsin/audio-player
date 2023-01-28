@@ -7,7 +7,7 @@ exports[`AdditionalControls component tests snapshot showDownloadControl & downl
 >
   <a
     class="sc-gswNZR ivOWdj"
-    data-testid="button"
+    data-testid="a"
     download=""
     href="test.ogg"
   >
@@ -34,12 +34,12 @@ exports[`AdditionalControls component tests snapshot showLoopControl & isLooped 
 
 exports[`AdditionalControls component tests snapshot with all the props affecting the UI 1`] = `
 <div
-  class="sc-bcXHqe fDkhxT"
+  class="sc-bcXHqe fDkhxT test"
   data-testid="additional-controls"
 >
   <a
     class="sc-gswNZR ivOWdj"
-    data-testid="button"
+    data-testid="a"
     download=""
     href="test.wav"
   >

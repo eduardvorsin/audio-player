@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-export const StyledAdditionalControls = styled.div`
+interface StyledAdditionalControlsProps {
+	className?: string,
+}
+
+export const StyledAdditionalControls = styled.div<StyledAdditionalControlsProps>`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
