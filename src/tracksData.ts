@@ -1,4 +1,16 @@
-export const tracks = [
+export interface TrackData {
+	id: number,
+	src: string,
+	trackName: string,
+	trackArtist: string,
+	trackImage: {
+		src: string,
+		alt: string,
+	},
+	sources: string[],
+}
+
+export const tracks: TrackData[] = [
 	{
 		id: 1,
 		src: './assets/audio/guitar-electro-sport-trailer-115571.mp3',
