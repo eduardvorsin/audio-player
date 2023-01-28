@@ -1,26 +1,35 @@
 import React from "react";
-import PropTypes from 'prop-types';
 import { StyledMainControls } from "./StyledMainControls";
+import { Button } from "../../UI/Button/Button";
+
 import { ReactComponent as PlayIcon } from '../../../assets/images/icons/play.svg';
 import { ReactComponent as PauseIcon } from '../../../assets/images/icons/pause.svg';
 import { ReactComponent as PrevIcon } from '../../../assets/images/icons/prev.svg';
 import { ReactComponent as NextIcon } from '../../../assets/images/icons/next.svg';
-import { Button } from "../../UI/Button/Button";
 
-export const MainControls = React.memo(({
+interface MainControlsProps {
+	isPlayed: boolean,
+	showNextAndPreviousControls?: boolean,
+	togglePlaying?: React.MouseEventHandler<HTMLButtonElement>,
+	onClickPrevious?: React.MouseEventHandler<HTMLButtonElement>,
+	onClickNext?: React.MouseEventHandler<HTMLButtonElement>,
+}
+
+export const MainControls = React.memo<MainControlsProps>(({
 	isPlayed,
-	togglePlaying,
-	showNextAndPreviousControls,
-	onClickPrevious,
-	onClickNext,
+	showNextAndPreviousControls = false,
+	togglePlaying = () => { },
+	onClickPrevious = () => { },
+	onClickNext = () => { },
 }) => {
 	const playButtonIcon = isPlayed ? <PauseIcon /> : <PlayIcon />;
 
-	const previousClickHandler = async () => {
-		onClickPrevious();
+	const previousClickHandler: React.MouseEventHandler<HTMLButtonElement> = (e) => {
+		onClickPrevious(e);
 	}
-	const nextClickHandler = () => {
-		onClickNext();
+
+	const nextClickHandler: React.MouseEventHandler<HTMLButtonElement> = (e) => {
+		onClickNext(e);
 	}
 
 	return (
@@ -59,21 +68,3 @@ export const MainControls = React.memo(({
 		</StyledMainControls>
 	)
 });
-
-MainControls.propTypes = {
-	togglePlaying: PropTypes.func,
-	isPlayed: PropTypes.bool,
-	showNextAndPreviousControls: PropTypes.bool,
-	onClickPrevious: PropTypes.func,
-	onClickNext: PropTypes.func,
-};
-
-MainControls.defaultProps = {
-	isPlayed: false,
-	togglePlaying: () => { },
-	showNextAndPreviousControls: false,
-	onClickPrevious: () => { },
-	onClickNext: () => { },
-};
-
-

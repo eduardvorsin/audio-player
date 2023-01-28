@@ -1,10 +1,11 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import React from "react";
 import { MainControls } from "./MainControls";
 
 describe('Volume Controls component tests', () => {
   test('renders correctly', () => {
-    const mockFn = jest.fn();
+    const mockFn = jest.fn<void, [React.MouseEvent<HTMLButtonElement>]>();
     render(
       <MainControls
         togglePlaying={mockFn}
@@ -15,57 +16,62 @@ describe('Volume Controls component tests', () => {
       />
     );
 
-    expect(screen.getAllByRole('button')).toHaveLength(3);
+    expect(screen.getAllByRole<HTMLButtonElement>('button')).toHaveLength(3);
   });
 
-  test('renders without passed props', () => {
+  test('renders with isPlayed prop', () => {
     render(
-      <MainControls />
+      <MainControls
+        isPlayed
+      />
     );
 
-    expect(screen.getAllByRole('button')).toHaveLength(1);
+    expect(screen.getAllByRole<HTMLButtonElement>('button')).toHaveLength(1);
   });
 
   test('when the play button is clicked, the mock function is triggered', async () => {
     const user = userEvent.setup();
-    const mockFn = jest.fn();
+    const mockFn = jest.fn<void, [React.MouseEvent<HTMLButtonElement>]>();
     render(
       <MainControls
+        isPlayed
         togglePlaying={mockFn}
       />
     );
 
-    await user.click(screen.getByRole('button'));
+    await user.click(screen.getByRole<HTMLButtonElement>('button'));
 
     expect(mockFn).toBeCalledTimes(1);
   });
 
   test('when the prev button is clicked, the mock function is triggered', async () => {
     const user = userEvent.setup();
-    const mockFn = jest.fn();
+    const mockFn = jest.fn<void, [React.MouseEvent<HTMLButtonElement>]>();
     render(
       <MainControls
+        isPlayed
         onClickPrevious={mockFn}
         showNextAndPreviousControls
       />
     );
 
-    await user.click(screen.getByRole('button', { name: 'prev track' }));
+    await user.click(screen.getByRole<HTMLButtonElement>('button', { name: 'prev track' }));
 
     expect(mockFn).toBeCalledTimes(1);
   });
 
   test('when the next button is clicked, the mock function is triggered', async () => {
     const user = userEvent.setup();
-    const mockFn = jest.fn();
+    const mockFn = jest.fn<void, [React.MouseEvent<HTMLButtonElement>]>();
     render(
       <MainControls
+        isPlayed
         onClickNext={mockFn}
         showNextAndPreviousControls
       />
     );
 
-    await user.click(screen.getByRole('button', { name: 'next track' }));
+    await user.click(screen.getByRole<HTMLButtonElement>('button', { name: 'next track' }));
 
     expect(mockFn).toBeCalledTimes(1);
   });
@@ -75,25 +81,28 @@ describe('Volume Controls component tests', () => {
       <MainControls isPlayed />
     );
 
-    expect(screen.getByRole('button')).toHaveTextContent(/pause/i);
+    expect(screen.getByRole<HTMLButtonElement>('button')).toHaveTextContent(/pause/i);
   });
 
   test('snapshot with default prop values', () => {
     render(
-      <MainControls />
+      <MainControls
+        isPlayed
+      />
     );
 
-    expect(screen.getByTestId('main-controls')).toMatchSnapshot();
+    expect(screen.getByTestId<HTMLDivElement>('main-controls')).toMatchSnapshot();
   });
 
   test('snapshot with showNextAndPreviousControls prop', () => {
     render(
       <MainControls
+        isPlayed
         showNextAndPreviousControls
       />
     );
 
-    expect(screen.getByTestId('main-controls')).toMatchSnapshot();
+    expect(screen.getByTestId<HTMLDivElement>('main-controls')).toMatchSnapshot();
   });
 
   test('snapshot with isPlayed prop', () => {
@@ -103,6 +112,6 @@ describe('Volume Controls component tests', () => {
       />
     );
 
-    expect(screen.getByTestId('main-controls')).toMatchSnapshot();
+    expect(screen.getByTestId<HTMLDivElement>('main-controls')).toMatchSnapshot();
   });
 });

@@ -1,6 +1,11 @@
 import styled from "styled-components";
 
-export const StyledMainControls = styled.div`
+interface StyledMainControlsProps {
+	className?: string,
+	nextAndPrevious: boolean,
+}
+
+export const StyledMainControls = styled.div<StyledMainControlsProps>`
 	align-self:center;
 	display: flex;
 	justify-content: ${({ nextAndPrevious }) => nextAndPrevious ? 'center' : 'flex-start'};
