@@ -1,9 +1,9 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { createGlobalStyle } from "styled-components";
 import { AudioPlayer } from "./components/AudioPlayer/AudioPlayer";
 import { Image } from "./components/UI/Image/Image";
 import { StyledApp } from "./StyledApp";
-import PropTypes from 'prop-types';
+import { TrackData } from "./tracksData";
 
 const GlobalStyles = createGlobalStyle`
 @font-face {
@@ -72,18 +72,22 @@ select {
 }
 `;
 
-const App = ({
-  tracks
-}) => {
-  const [trackIndex, setTrackIndex] = useState(0);
+interface AppProps {
+  tracks: TrackData[],
+}
 
-  const handleClickPrevious = () => {
+const App: React.FC<AppProps> = ({
+  tracks,
+}) => {
+  const [trackIndex, setTrackIndex] = useState<number>(0);
+
+  const handleClickPrevious: React.MouseEventHandler<HTMLButtonElement> = () => {
     setTrackIndex(prevState =>
       prevState === 0 ? tracks.length - 1 : prevState - 1
     )
   };
 
-  const handleClickNext = () => {
+  const handleClickNext = (e?: React.MouseEvent<HTMLButtonElement>): void => {
     setTrackIndex(prevState =>
       prevState === tracks.length - 1 ? 0 : prevState + 1
     )
@@ -116,34 +120,6 @@ const App = ({
     </>
   );
 };
-
-App.propTypes = {
-  tracks: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    src: PropTypes.string.isRequired,
-    trackName: PropTypes.string,
-    trackArtist: PropTypes.string,
-    trackImage: PropTypes.shape({
-      src: PropTypes.string,
-      alt: PropTypes.string,
-    }),
-    sources: PropTypes.arrayOf(PropTypes.string),
-  })),
-}
-
-App.defaultProps = {
-  tracks: [{
-    id: 1,
-    src: 'abc.mp3',
-    trackName: '',
-    trackArtist: '',
-    trackImage: {
-      src: '',
-      alt: '',
-    },
-    sources: ['abc.ogg'],
-  }],
-}
 
 export default App;
 
