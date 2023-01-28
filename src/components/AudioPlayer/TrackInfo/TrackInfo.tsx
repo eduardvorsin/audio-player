@@ -1,12 +1,19 @@
-import PropTypes from 'prop-types';
 import { memo } from 'react';
 import { StyledTrackArtist, StyledTrackInfo, StyledTrackName } from "./StyledTrackInfo";
 
-export const TrackInfo = memo(({
+interface TrackInfoProps {
+  trackName: string,
+  trackArtist: string,
+  className?: string,
+}
+
+export const TrackInfo = memo<TrackInfoProps>(({
   trackName,
   trackArtist,
-  className,
+  className = '',
 }) => {
+
+
   return (
     <StyledTrackInfo
       className={className}
@@ -17,6 +24,7 @@ export const TrackInfo = memo(({
       >
         {trackName}
       </StyledTrackName>
+
       <StyledTrackArtist
         data-testid='track-artist'
       >
@@ -25,15 +33,3 @@ export const TrackInfo = memo(({
     </StyledTrackInfo>
   );
 });
-
-TrackInfo.propTypes = {
-  trackName: PropTypes.string,
-  trackArtist: PropTypes.string,
-  className: PropTypes.string,
-}
-
-TrackInfo.defaultProps = {
-  trackName: 'trackName',
-  trackArtist: 'trackArtist',
-  className: '',
-}

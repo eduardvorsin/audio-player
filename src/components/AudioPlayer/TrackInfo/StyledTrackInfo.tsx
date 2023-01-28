@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-export const StyledTrackInfo = styled.div`
+interface StyledTrackInfoProps {
+	className?: string;
+}
+
+export const StyledTrackInfo = styled.div<StyledTrackInfoProps>`
 	font-size: 16px;
 	letter-spacing: 0.3px;
 	color:var(--secondary-color);

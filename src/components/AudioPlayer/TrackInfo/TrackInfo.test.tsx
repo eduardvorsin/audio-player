@@ -8,33 +8,31 @@ describe('Track Info component tests', () => {
       trackArtist='artist'
     />);
 
-    expect(screen.getByText('track')).toBeInTheDocument();
-    expect(screen.getByText('artist')).toBeInTheDocument();
-  });
-
-  test('renders without passed props', () => {
-    render(<TrackInfo />);
-
-    expect(screen.getByText('trackName')).toBeInTheDocument();
-    expect(screen.getByText('trackArtist')).toBeInTheDocument();
+    expect(screen.getByText<HTMLParagraphElement>('track')).toBeInTheDocument();
+    expect(screen.getByText<HTMLParagraphElement>('artist')).toBeInTheDocument();
   });
 
   test('className is assigned correctly', () => {
     render(
       <TrackInfo
+        trackName='track'
+        trackArtist='artist'
         className='test'
       />
     );
 
-    expect(screen.getByTestId('track-info')).toHaveClass('test');
+    expect(screen.getByTestId<HTMLDivElement>('track-info')).toHaveClass('test');
   });
 
-  test('snapshot with default prop values', () => {
+  test('snapshot with default className prop', () => {
     render(
-      <TrackInfo />
+      <TrackInfo
+        trackName='track'
+        trackArtist='artist'
+      />
     );
 
-    expect(screen.getByTestId('track-info')).toMatchSnapshot();
+    expect(screen.getByTestId<HTMLDivElement>('track-info')).toMatchSnapshot();
   });
 
   test('snapshot with all the passed props', () => {
@@ -46,6 +44,6 @@ describe('Track Info component tests', () => {
       />
     );
 
-    expect(screen.getByTestId('track-info')).toMatchSnapshot();
+    expect(screen.getByTestId<HTMLDivElement>('track-info')).toMatchSnapshot();
   });
 });
