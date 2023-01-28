@@ -10,12 +10,12 @@ exports[`Image component tests snapshot with all the passed props 1`] = `
 />
 `;
 
-exports[`Image component tests snapshot with default prop values 1`] = `
+exports[`Image component tests snapshot without optional props 1`] = `
 <img
-  alt=""
+  alt="placeholder image"
   class="sc-bcXHqe fZAhUH"
   height="50"
-  src=""
+  src="https://via.placeholder.com/100x100"
   width="50"
 />
 `;

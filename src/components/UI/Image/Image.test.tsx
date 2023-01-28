@@ -11,7 +11,7 @@ describe('Image component tests', () => {
         alt='placeholder image'
       />
     );
-    expect(screen.getByAltText(/placeholder image/i)).toBeInTheDocument();
+    expect(screen.getByAltText<HTMLImageElement>(/placeholder image/i)).toBeInTheDocument();
   });
 
   test('the image is rendered with a specific width', () => {
@@ -23,7 +23,7 @@ describe('Image component tests', () => {
       />
     );
 
-    expect(screen.getByAltText(/placeholder image/i)).toHaveStyle('width:200');
+    expect(screen.getByAltText<HTMLImageElement>(/placeholder image/i)).toHaveStyle('width:200');
   });
 
   test('the image is rendered with a specific height', () => {
@@ -35,7 +35,7 @@ describe('Image component tests', () => {
       />
     );
 
-    expect(screen.getByAltText(/placeholder image/i)).toHaveStyle('width:150');
+    expect(screen.getByAltText<HTMLImageElement>(/placeholder image/i)).toHaveStyle('width:150');
   });
 
   test('the image is rendered with a specific alt text', () => {
@@ -48,26 +48,30 @@ describe('Image component tests', () => {
       />
     );
 
-    expect(screen.getByAltText(/placeholder image/i)).toBeInTheDocument();
+    expect(screen.getByAltText<HTMLImageElement>(/placeholder image/i)).toBeInTheDocument();
   });
 
   test('className is assigned correctly', () => {
     render(
       <Image
+        src='https://via.placeholder.com/200x200'
         className='test'
         alt='placeholder image'
       />
     );
 
-    expect(screen.getByAltText(/placeholder image/i)).toHaveClass('test');
+    expect(screen.getByAltText<HTMLImageElement>(/placeholder image/i)).toHaveClass('test');
   });
 
-  test('snapshot with default prop values', () => {
+  test('snapshot without optional props', () => {
     render(
-      <Image />
+      <Image
+        src='https://via.placeholder.com/100x100'
+        alt='placeholder image'
+      />
     );
 
-    expect(screen.getByRole('img')).toMatchSnapshot();
+    expect(screen.getByAltText<HTMLImageElement>('placeholder image')).toMatchSnapshot();
   });
 
   test('snapshot with all the passed props', () => {
@@ -81,6 +85,6 @@ describe('Image component tests', () => {
       />
     );
 
-    expect(screen.getByAltText(/new placeholder image/i)).toMatchSnapshot();
+    expect(screen.getByAltText<HTMLImageElement>(/new placeholder image/i)).toMatchSnapshot();
   });
 });
