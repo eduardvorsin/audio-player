@@ -1,3 +1,4 @@
+import { Action } from './actionCreators';
 import {
 	changeCurrentTimeAC,
 	changeDurationAC,
@@ -9,22 +10,13 @@ import {
 	playAudioAC,
 	unloopAudioAC,
 	unmuteAudioAC,
-	CHANGE_CURRENT_TIME,
-	CHANGE_DURATION,
-	CHANGE_PLAYBACKRATE,
-	CHANGE_VOLUME,
-	LOOP,
-	MUTE,
-	PAUSE,
-	PLAY,
-	UNLOOP,
-	UNMUTE
+	AudioPlayerActions
 } from "./actionCreators";
 
 describe('action creator tests', () => {
 	test('changeDurationAC returns the correct action object', () => {
-		const expectedAction = {
-			type: CHANGE_DURATION,
+		const expectedAction: Action = {
+			type: AudioPlayerActions.CHANGE_DURATION,
 			payload: 5,
 		};
 
@@ -32,8 +24,8 @@ describe('action creator tests', () => {
 	});
 
 	test('changeCurrentTimeAC returns the correct action object', () => {
-		const expectedAction = {
-			type: CHANGE_CURRENT_TIME,
+		const expectedAction: Action = {
+			type: AudioPlayerActions.CHANGE_CURRENT_TIME,
 			payload: 10,
 		};
 
@@ -41,8 +33,8 @@ describe('action creator tests', () => {
 	});
 
 	test('changeVolumeAC returns the correct action object', () => {
-		const expectedAction = {
-			type: CHANGE_VOLUME,
+		const expectedAction: Action = {
+			type: AudioPlayerActions.CHANGE_VOLUME,
 			payload: 33,
 		};
 
@@ -50,8 +42,8 @@ describe('action creator tests', () => {
 	});
 
 	test('changePlaybackRateAC returns the correct action object', () => {
-		const expectedAction = {
-			type: CHANGE_PLAYBACKRATE,
+		const expectedAction: Action = {
+			type: AudioPlayerActions.CHANGE_PLAYBACKRATE,
 			payload: 1.25,
 		};
 
@@ -59,48 +51,48 @@ describe('action creator tests', () => {
 	});
 
 	test('playAudioAC returns the correct action object', () => {
-		const expectedAction = {
-			type: PLAY,
+		const expectedAction: Action = {
+			type: AudioPlayerActions.PLAY,
 		};
 
 		expect(playAudioAC()).toEqual(expectedAction);
 	});
 
 	test('pauseAudioAC returns the correct action object', () => {
-		const expectedAction = {
-			type: PAUSE,
+		const expectedAction: Action = {
+			type: AudioPlayerActions.PAUSE,
 		}
 
 		expect(pauseAudioAC()).toEqual(expectedAction);
 	});
 
 	test('muteAudioAC returns the correct action object', () => {
-		const expectedAction = {
-			type: MUTE,
+		const expectedAction: Action = {
+			type: AudioPlayerActions.MUTE,
 		};
 
 		expect(muteAudioAC()).toEqual(expectedAction);
 	});
 
 	test('unmuteAudioAC returns the correct action object', () => {
-		const expectedAction = {
-			type: UNMUTE,
+		const expectedAction: Action = {
+			type: AudioPlayerActions.UNMUTE,
 		};
 
 		expect(unmuteAudioAC()).toEqual(expectedAction);
 	});
 
 	test('loopAudioAC returns the correct action object', () => {
-		const expectedAction = {
-			type: LOOP,
+		const expectedAction: Action = {
+			type: AudioPlayerActions.LOOP,
 		};
 
 		expect(loopAudioAC()).toEqual(expectedAction);
 	});
 
 	test('unloopAudioAC returns the correct action object', () => {
-		const expectedAction = {
-			type: UNLOOP,
+		const expectedAction: Action = {
+			type: AudioPlayerActions.UNLOOP,
 		};
 
 		expect(unloopAudioAC()).toEqual(expectedAction);
