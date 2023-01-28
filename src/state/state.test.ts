@@ -1,13 +1,15 @@
+import { State } from './state';
 import { createInitialState } from "./state";
 
 describe('createInitialState tests', () => {
 
   test('createInitialState passed valid parameters', () => {
-    const intialState = createInitialState({
+    const intialState: State = createInitialState({
       loop: true,
       muted: true,
     });
-    const expectedValue = {
+
+    const expectedValue: State = {
       isPlayed: false,
       isMuted: true,
       volume: 50,
@@ -21,8 +23,8 @@ describe('createInitialState tests', () => {
   });
 
   test('createInitialState no passed parameters', () => {
-    const intialState = createInitialState({});
-    const expectedValue = {
+    const intialState: State = createInitialState({});
+    const expectedValue: State = {
       isPlayed: false,
       isMuted: false,
       volume: 50,
