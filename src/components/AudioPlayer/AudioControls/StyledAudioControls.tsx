@@ -1,7 +1,11 @@
 import styled from "styled-components";
 import { StyledAdditionalControls } from "../AdditionalControls/StyledAdditionalControls";
 
-export const StyledAudioControls = styled.div`
+interface StyledAudioControlsProps {
+	className?: string
+};
+
+export const StyledAudioControls = styled.div<StyledAudioControlsProps>`
 	display: grid;
 	justify-content: center;
 	gap:15px;

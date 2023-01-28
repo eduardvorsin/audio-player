@@ -35,7 +35,6 @@ exports[`AudioControls component tests snapshot with a modified volume prop 1`] 
       <input
         style="--progress-percent: 33%;"
         type="range"
-        value="33"
       />
     </div>
   </div>
@@ -91,7 +90,6 @@ exports[`AudioControls component tests snapshot with all the props affecting the
       <input
         style="--progress-percent: 50%;"
         type="range"
-        value="50"
       />
     </div>
   </div>
@@ -99,15 +97,15 @@ exports[`AudioControls component tests snapshot with all the props affecting the
     class="sc-bcXHqe fDkhxT"
     data-testid="additional-controls"
   >
-    <button
+    <a
       class="sc-hLBbgP djRQit"
-      data-testid="button"
+      data-testid="a"
       download=""
       href=""
     >
       <svg />
       download track
-    </button>
+    </a>
     <button
       aria-label="current playback rate"
       class="sc-hLBbgP bbygWe sc-eDvSVe eCTlAt"
@@ -161,7 +159,6 @@ exports[`AudioControls component tests snapshot with default prop values 1`] = `
       <input
         style="--progress-percent: 50%;"
         type="range"
-        value="50"
       />
     </div>
   </div>
@@ -203,9 +200,28 @@ exports[`AudioControls component tests snapshot with isPlayed & isMuted props 1`
       <input
         style="--progress-percent: 50%;"
         type="range"
-        value="50"
       />
     </div>
+  </div>
+</div>
+`;
+
+exports[`AudioControls component tests snapshot with modified screen width 1`] = `
+<div
+  class="sc-gswNZR ipfQzw"
+  data-testid="audio-controls"
+>
+  <div
+    class="sc-dkrFOg gMtPZj"
+    data-testid="main-controls"
+  >
+    <button
+      class="sc-hLBbgP eWuHc"
+      data-testid="button"
+    >
+      <svg />
+      play
+    </button>
   </div>
 </div>
 `;
@@ -245,7 +261,6 @@ exports[`AudioControls component tests snapshot with showDownloadControl & downl
       <input
         style="--progress-percent: 50%;"
         type="range"
-        value="50"
       />
     </div>
   </div>
@@ -255,7 +270,7 @@ exports[`AudioControls component tests snapshot with showDownloadControl & downl
   >
     <a
       class="sc-hLBbgP djRQit"
-      data-testid="button"
+      data-testid="a"
       download=""
       href="test.mp3"
     >
@@ -301,7 +316,6 @@ exports[`AudioControls component tests snapshot with showLoopControl & isLooped 
       <input
         style="--progress-percent: 50%;"
         type="range"
-        value="50"
       />
     </div>
   </div>
@@ -355,7 +369,6 @@ exports[`AudioControls component tests snapshot with showLoopControl prop 1`] = 
       <input
         style="--progress-percent: 50%;"
         type="range"
-        value="50"
       />
     </div>
   </div>
@@ -423,7 +436,6 @@ exports[`AudioControls component tests snapshot with showNextAndPreviousControls
       <input
         style="--progress-percent: 50%;"
         type="range"
-        value="50"
       />
     </div>
   </div>
@@ -465,7 +477,6 @@ exports[`AudioControls component tests snapshot with showPlaybackRateControl & p
       <input
         style="--progress-percent: 50%;"
         type="range"
-        value="50"
       />
     </div>
   </div>
@@ -519,7 +530,6 @@ exports[`AudioControls component tests snapshot with showPlaybackRateControl pro
       <input
         style="--progress-percent: 50%;"
         type="range"
-        value="50"
       />
     </div>
   </div>

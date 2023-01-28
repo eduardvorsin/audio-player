@@ -1,29 +1,49 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { useScreenWidth } from "../../../hooks/useScreenWidth";
 import { StyledAudioControls } from "./StyledAudioControls";
 import { MainControls } from "../MainControls/MainControls";
 import { AdditionalControls } from "../AdditionalControls/AdditionalControls";
 import { VolumeControls } from "../VolumeControls/VolumeControls";
 
-export const AudioControls = React.memo(({
+interface AudioControlsProps {
+	isPlayed: boolean,
+	isMuted: boolean,
+	volume?: number,
+	showDownloadControl?: boolean,
+	showNextAndPreviousControls?: boolean,
+	showLoopControl?: boolean,
+	showPlaybackRateControl?: boolean,
+	isLooped?: boolean,
+	playbackRate?: number,
+	className?: string,
+	downloadLink?: string,
+	toggleMuting?: React.MouseEventHandler<HTMLButtonElement>,
+	onVolumeChange?: React.ChangeEventHandler<HTMLInputElement>,
+	changePlaybackRate?: React.MouseEventHandler<HTMLButtonElement>,
+	changeLooping?: React.MouseEventHandler<HTMLButtonElement>,
+	togglePlaying?: React.MouseEventHandler<HTMLButtonElement>,
+	onClickPrevious?: React.MouseEventHandler<HTMLButtonElement>,
+	onClickNext?: React.MouseEventHandler<HTMLButtonElement>,
+};
+
+export const AudioControls = React.memo<AudioControlsProps>(({
 	isPlayed,
-	togglePlaying,
 	isMuted,
-	toggleMuting,
-	volume,
-	onVolumeChange,
-	showDownloadControl,
-	downloadLink,
-	playbackRate,
-	showPlaybackRateControl,
-	changePlaybackRate,
-	showLoopControl,
-	isLooped,
-	changeLooping,
-	showNextAndPreviousControls,
-	onClickPrevious,
-	onClickNext,
+	volume = 50,
+	showDownloadControl = false,
+	showPlaybackRateControl = false,
+	showNextAndPreviousControls = false,
+	showLoopControl = false,
+	isLooped = false,
+	downloadLink = '',
+	playbackRate = 1,
+	toggleMuting = () => { },
+	onVolumeChange = () => { },
+	changeLooping = () => { },
+	changePlaybackRate = () => { },
+	togglePlaying = () => { },
+	onClickPrevious = () => { },
+	onClickNext = () => { },
 }) => {
 
 	const screenWidth = useScreenWidth();
@@ -42,6 +62,7 @@ export const AudioControls = React.memo(({
 				onClickPrevious={onClickPrevious}
 				onClickNext={onClickNext}
 			/>
+
 			{!isMobileWidth &&
 				<VolumeControls
 					volume={volume}
@@ -50,6 +71,7 @@ export const AudioControls = React.memo(({
 					toggleMuting={toggleMuting}
 				/>
 			}
+
 			{showAdditionalControls &&
 				<AdditionalControls
 					showDownloadControl={showDownloadControl}
@@ -65,43 +87,3 @@ export const AudioControls = React.memo(({
 		</StyledAudioControls>
 	);
 });
-
-AudioControls.propTypes = {
-	isPlayed: PropTypes.bool,
-	togglePlaying: PropTypes.func,
-	isMuted: PropTypes.bool,
-	toggleMuting: PropTypes.func,
-	volume: PropTypes.number,
-	onVolumeChange: PropTypes.func,
-	showDownloadControl: PropTypes.bool,
-	downloadLink: PropTypes.string,
-	playbackRate: PropTypes.number,
-	showPlaybackRateControl: PropTypes.bool,
-	changePlaybackRate: PropTypes.func,
-	showLoopControl: PropTypes.bool,
-	isLooped: PropTypes.bool,
-	changeLooping: PropTypes.func,
-	showNextAndPreviousControls: PropTypes.bool,
-	onClickPrevious: PropTypes.func,
-	onClickNext: PropTypes.func,
-};
-
-AudioControls.defaultProps = {
-	isPlayed: false,
-	togglePlaying: () => { },
-	isMuted: false,
-	toggleMuting: () => { },
-	volume: 50,
-	onVolumeChange: () => { },
-	showDownloadControl: false,
-	downloadLink: '',
-	playbackRate: 1,
-	showPlaybackRateControl: false,
-	changePlaybackRate: () => { },
-	showLoopControl: false,
-	isLooped: false,
-	changeLooping: () => { },
-	showNextAndPreviousControls: false,
-	onClickPrevious: () => { },
-	onClickNext: () => { },
-};
