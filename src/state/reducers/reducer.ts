@@ -1,73 +1,66 @@
+import { Action } from './../actions/actionCreators';
+import { State } from "../state";
 import {
-	CHANGE_CURRENT_TIME,
-	CHANGE_DURATION,
-	CHANGE_PLAYBACKRATE,
-	CHANGE_VOLUME,
-	MUTE,
-	UNMUTE,
-	PAUSE,
-	PLAY,
-	LOOP,
-	UNLOOP
+	AudioPlayerActions
 } from "../actions/actionCreators";
 
-export function reducer(state, action) {
+export function reducer(state: State, action: Action): State {
 	switch (action.type) {
-		case CHANGE_DURATION: {
+		case AudioPlayerActions.CHANGE_DURATION: {
 			return {
 				...state,
 				duration: action.payload,
 			}
 		}
-		case CHANGE_CURRENT_TIME: {
+		case AudioPlayerActions.CHANGE_CURRENT_TIME: {
 			return {
 				...state,
 				currentTime: action.payload,
 			}
 		}
-		case CHANGE_VOLUME: {
+		case AudioPlayerActions.CHANGE_VOLUME: {
 			return {
 				...state,
 				volume: action.payload,
 			}
 		}
-		case CHANGE_PLAYBACKRATE: {
+		case AudioPlayerActions.CHANGE_PLAYBACKRATE: {
 			return {
 				...state,
 				playbackRate: action.payload,
 			}
 		}
-		case PLAY: {
+		case AudioPlayerActions.PLAY: {
 			return {
 				...state,
 				isPlayed: true,
 			}
 		}
-		case PAUSE: {
+		case AudioPlayerActions.PAUSE: {
 			return {
 				...state,
 				isPlayed: false,
 			}
 		}
-		case MUTE: {
+		case AudioPlayerActions.MUTE: {
 			return {
 				...state,
 				isMuted: true,
 			}
 		}
-		case UNMUTE: {
+		case AudioPlayerActions.UNMUTE: {
 			return {
 				...state,
 				isMuted: false,
 			}
 		}
-		case LOOP: {
+		case AudioPlayerActions.LOOP: {
 			return {
 				...state,
 				isLooped: true,
 			}
 		}
-		case UNLOOP: {
+		case AudioPlayerActions.UNLOOP: {
 			return {
 				...state,
 				isLooped: false,
