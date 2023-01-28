@@ -1,4 +1,4 @@
-export const formatTime = (secs) => {
+export const formatTime = (secs: number): string | never => {
 	if (Number.isNaN(+secs)) {
 		throw new Error('the passed value must be a number');
 	}
@@ -13,3 +13,13 @@ export const formatTime = (secs) => {
 	const returnedSeconds = seconds < 10 ? `0${seconds}` : `${seconds}`;
 	return `${returnedMinutes}:${returnedSeconds}`;
 }
+
+export const isCorrectAudioFormat = (fileName: string): boolean | never => {
+	if (typeof fileName !== 'string') {
+		throw new Error('the passed value must be a string');
+	}
+
+	const audioFormatRegexp = /.+\.(wav|mp3|ogg|flac|aac|webm)$/;
+
+	return audioFormatRegexp.test(fileName)
+};
