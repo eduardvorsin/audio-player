@@ -1,7 +1,11 @@
 import styled from "styled-components";
 import { Button } from "../../UI/Button/Button";
 
-export const PlaybackRateButton = styled(Button)`
+interface PlaybackRateButtonProps {
+	className?: string,
+}
+
+export const PlaybackRateButton = styled(Button) <PlaybackRateButtonProps>`
 	padding: 2.5px;
 	font-size: 16px;
 	border: 2px solid var(--secondary-color);
