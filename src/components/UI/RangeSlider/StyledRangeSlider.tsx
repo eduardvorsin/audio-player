@@ -1,5 +1,10 @@
 import styled, { css } from "styled-components";
 
+interface StyledRangeSliderProps {
+	isVertical?: boolean,
+	className?: string,
+};
+
 const Thumb = css`
   appearance: none;
 	width: var(--thumb-size);
@@ -39,7 +44,7 @@ const TrackDisabled = css`
 	transition: background-color 0.3s ease;
 `;
 
-export const StyledRangeSlider = styled.div`
+export const StyledRangeSlider = styled.div<StyledRangeSliderProps>`
 	--track-height:8px;
 	--track-width:150px;
 	--thumb-size:20px;
