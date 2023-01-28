@@ -1,6 +1,12 @@
 import styled, { css } from "styled-components";
 
-export const StyledButton = styled.button`
+export interface StyledButtonProps {
+	className?: string;
+	withoutVisibleText?: boolean,
+	primary?: boolean,
+}
+
+export const StyledButton = styled.button<StyledButtonProps>`
 	background-color: transparent;
 	border: none;
 	cursor: pointer;

@@ -1,6 +1,6 @@
+import React from "react";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import React from "react";
 import { Button } from "./Button";
 import { ReactComponent as MockIcon } from '../../../assets/images/icons/play.svg';
 
@@ -13,41 +13,37 @@ describe('Button component tests', () => {
       </Button>
     );
 
-    expect(screen.getByRole('button')).toBeInTheDocument();
-  });
-
-  test('if a href prop is passed renders the link', () => {
-    render(<Button href='#'>test text</Button>);
-
-    expect(screen.getByRole('link')).toBeInTheDocument();
+    expect(screen.getByRole<HTMLButtonElement>('button')).toBeInTheDocument();
   });
 
   test('when the button is clicked, the mock function is triggered', async () => {
     const user = userEvent.setup();
-    const mockFn = jest.fn();
+    const mockClickHandler = jest.fn<void, [React.MouseEvent<HTMLButtonElement>]>();
     render(
-      <Button onClick={mockFn}>
+      <Button onClick={mockClickHandler}>
         test text
       </Button>
     );
 
-    await user.click(screen.getByRole('button'));
-    expect(mockFn).toBeCalledTimes(1);
+    await user.click(screen.getByRole<HTMLButtonElement>('button'));
+
+    expect(mockClickHandler).toBeCalledTimes(1);
   });
 
   test('when the button is pressed through the keyboard, the mock function is triggered', async () => {
     const user = userEvent.setup();
-    const mockFn = jest.fn();
+    const mockKeydownHandler = jest.fn<void, [React.KeyboardEvent<HTMLButtonElement>]>();
     render(
-      <Button onKeyDown={mockFn}>
+      <Button onKeyDown={mockKeydownHandler}>
         test text
       </Button>
     );
 
-    await user.click(screen.getByRole('button'));
+    await user.click(screen.getByRole<HTMLButtonElement>('button'));
     await user.keyboard('b');
     await user.keyboard('c');
-    expect(mockFn).toBeCalledTimes(2);
+
+    expect(mockKeydownHandler).toBeCalledTimes(2);
   });
 
   test('if the startIcon prop is passed, it renders the icon before the text', () => {
@@ -57,17 +53,17 @@ describe('Button component tests', () => {
       </Button>
     );
 
-    expect(screen.getByTitle(/play icon/i)).toBeInTheDocument();
+    expect(screen.getByTitle<HTMLElement>(/play icon/i)).toBeInTheDocument();
   });
 
   test('if the startIcon prop is passed, it renders the icon after the text', () => {
     render(
-      <Button endIcon={<MockIcon title='stop icon' />}>
+      <Button endIcon={<MockIcon title='play icon' />}>
         test text
       </Button>
     );
 
-    expect(screen.getByTitle(/stop icon/i)).toBeInTheDocument();
+    expect(screen.getByTitle<HTMLElement>(/stop icon/i)).toBeInTheDocument();
   });
 
   test('if startIcon and endIcon prop are passed', () => {
@@ -80,8 +76,8 @@ describe('Button component tests', () => {
       </Button>
     );
 
-    expect(screen.getByTitle(/play icon/i)).toBeInTheDocument();
-    expect(screen.getByTitle(/stop icon/i)).toBeInTheDocument();
+    expect(screen.getByTitle<HTMLElement>(/play icon/i)).toBeInTheDocument();
+    expect(screen.getByTitle<HTMLElement>(/stop icon/i)).toBeInTheDocument();
   });
 
   test('className is assigned correctly', () => {
@@ -93,35 +89,42 @@ describe('Button component tests', () => {
       </Button>
     );
 
-    expect(screen.getByRole('button')).toHaveClass('test');
+    expect(screen.getByRole<HTMLButtonElement>('button')).toHaveClass('test');
   });
 
   test('snapshot with default prop values', () => {
     render(
-      <Button />
+      <Button>
+        test text
+      </Button>
     );
 
-    expect(screen.getByTestId('button')).toMatchSnapshot();
+    expect(screen.getByTestId<HTMLButtonElement>('button')).toMatchSnapshot();
   });
 
   test('snapshot with startIcon prop', () => {
     render(
       <Button
         startIcon={<MockIcon title='start icon' />}
-      />
+      >
+        test text
+      </Button>
     );
 
-    expect(screen.getByTestId('button')).toMatchSnapshot();
+    expect(screen.getByTestId<HTMLButtonElement>('button')).toMatchSnapshot();
   });
+
 
   test('snapshot with endIcon prop', () => {
     render(
       <Button
         endIcon={<MockIcon title='end icon' />}
-      />
+      >
+        test text
+      </Button>
     );
 
-    expect(screen.getByTestId('button')).toMatchSnapshot();
+    expect(screen.getByTestId<HTMLButtonElement>('button')).toMatchSnapshot();
   });
 
   test('snapshot with startIcon & endIcon props', () => {
@@ -129,9 +132,11 @@ describe('Button component tests', () => {
       <Button
         startIcon={<MockIcon title='start icon' />}
         endIcon={<MockIcon title='end icon' />}
-      />
+      >
+        test text
+      </Button>
     );
 
-    expect(screen.getByTestId('button')).toMatchSnapshot();
+    expect(screen.getByTestId<HTMLButtonElement>('button')).toMatchSnapshot();
   });
 });

@@ -1,5 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Button component tests snapshot with as="a" prop 1`] = `
+<a
+  class="sc-bcXHqe dGjfYA"
+  data-testid="button"
+/>
+`;
+
 exports[`Button component tests snapshot with default prop values 1`] = `
 <button
   class="sc-bcXHqe dGjfYA"
